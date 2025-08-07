@@ -1,56 +1,131 @@
-*{
-  padding: 0;
-  box-sizing: border-box;
-  box-shadow: none;
-}
 :root {
   --color-primary: #8C1C13;
   --color-secondary: #BF4342;
   --color-background: #E7D7C1;
   --color-tertiary: #A78A7F;
   --color-dark: #735751;
-  font-size: 62.5%;
+  font-size: 62.5%; 
+}
+*{
+  padding: 0;
+  box-sizing: border-box;
+  box-shadow: none;
+}
+#root{
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--color-background);
+}
+.header{
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-primary);
+  text-align: center;
+  font-family: "Lilita One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
   
 }
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+.logo-name-container{
+  display: flex;
+  align-items: center;
+  text-align: center  ;
+}
+.logo{
+  margin: 8.4rem 3.6rem 10rem 7.2rem  ; 
+  width: 7.2rem;
+  height: 8.1rem;
+}
+.title{
+  width: 42rem;
+  font-size: 8rem;
+  height: 9.1rem;
+  color: var(--color-background);
+}
+.navigation-bar{
+  background-color:var(--color-secondary);
+  height: 8.5rem;
+
+
+
+}
+.navbar-menu{ 
+  display: flex;
+  flex-direction: row;
+  gap: 4.2rem;
+  list-style: none;
+  padding: 0;
+  margin: 0 24rem;
+  align-items: center;
   text-align: center;
+  height: 8.5rem;
+  width: 95rem;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.nav-item{
+  height: 100%;
+  display: flex;
+  margin: 0 auto;
+  text-align: center;
+  
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.nav-link{
+  background-color: var(--color-secondary);
+  text-decoration: none;
+  font-size: 3.2rem;
+  color:var(--color-background);
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.nav-item .active {
+  background-color: var(--color-background);
+  font-weight: 600;
+  color: var(--color-primary);
+  height: 100%;
+  margin-top: 0;
 }
+footer{
+  background-color: var(--color-primary);
+  height: 2.7rem;
+  color: var(--color-background);
+  text-align: center;
+  margin-bottom: 0;
+  width: 100%;
+}
+.pizza-image{
+  background-color:black;
+  height: 10rem;
+  width: auto;
+  margin-left: 2rem;
+}
+.pizza-card{
+  border-radius: 2rem;
+  display: flex;
+  margin: 0 auto;
+  width: 80%;
+  height: 15rem;
+  gap: 4.1rem;
+  align-items: center;
+  background-color: var(--color-secondary);
+  font-family: "Lilita One", sans-serif;
+  font-weight: 400;
+}
+.pizza-header h3{
+  color: var(--color-background);
+  font-size: 3rem;
+}
+.pizza-ingredients{
+  margin-top: 0;
+  color: var(--color-tertiary);
+}
+.cardapio-container{
+  display: flex;
+  flex-direction: column;
+}
+.pizzas-grid{
+  margin-top: 2rem;
+  display: grid;
+  gap: 4rem
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }

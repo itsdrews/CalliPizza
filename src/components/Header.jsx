@@ -3,12 +3,22 @@ import NavBar from './NavBar'
 
 const Header = () => {
   return (
-    <div>
-      <h1>Header</h1>
-      <img src='./public/pizza-piece.svg'/>
-      <NavBar></NavBar>
+    <header className='header'>
+      <div className="logo-name-container">
+
+      <img className='logo'  alt='logo-pizza-piece' src='/pizza-piece.svg'/>
+      <h1 className='title'>CALLIPIZZA </h1>
+      </div>
+
+      <div className="navigation-bar">
+          
+          <NavBar></NavBar>
+
+      </div>
       
-    </div>
+
+    </header>
+    
   )
 }
 
