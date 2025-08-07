@@ -1,10 +1,15 @@
 import React from 'react'
-
+import './Cardapio.css'
+import Header from '../components/Header'
+import PizzaCard from '../components/PizzaCard'
 const Cardapio = () => {
   return (
-    <div>
-      <a>Hello world</a>
-    </div>
+    <>
+
+    <Header></Header>
+    <PizzaCard></PizzaCard>
+
+    </>
   )
 }
 

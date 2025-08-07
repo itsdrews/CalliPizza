@@ -1,3 +1,17 @@
+*{
+  padding: 0;
+  box-sizing: border-box;
+  box-shadow: none;
+}
+:root {
+  --color-primary: #8C1C13;
+  --color-secondary: #BF4342;
+  --color-background: #E7D7C1;
+  --color-tertiary: #A78A7F;
+  --color-dark: #735751;
+  font-size: 62.5%;
+  
+}
 #root {
   max-width: 1280px;
   margin: 0 auto;
