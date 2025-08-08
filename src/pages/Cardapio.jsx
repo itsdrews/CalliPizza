@@ -10,9 +10,9 @@ const Cardapio = () => {
       descricao: "A clássica pizza italiana com ingredientes frescos",
       ingredientes: ["Molho de tomate", "Mussarela premium", "Manjericão fresco", "Azeite de oliva"],
       valores: {
-        "P": 35.90,
-        "M": 45.90,
-        "G": 55.90,
+        "Pequena": 35.90,
+        "Média": 45.90,
+        "Grande": 55.90,
         "Família": 65.90
       }
     },
@@ -22,9 +22,9 @@ const Cardapio = () => {
       descricao: "Tradicional pizza brasileira com calabresa artesanal",
       ingredientes: ["Molho de tomate", "Mussarela", "Calabresa premium", "Cebola caramelizada"],
       valores: {
-        "P": 38.90,
-        "M": 48.90,
-        "G": 58.90,
+        "Pequena": 38.90,
+        "Média": 48.90,
+        "Grande": 58.90,
         "Família": 68.90
       }
     },
@@ -34,9 +34,9 @@ const Cardapio = () => {
       descricao: "Combinação perfeita de queijos selecionados",
       ingredientes: ["Molho de tomate", "Mussarela", "Provolone", "Gorgonzola", "Parmesão"],
       valores: {
-        "P": 42.90,
-        "M": 52.90,
-        "G": 62.90,
+        "Pequena": 42.90,
+        "Média": 52.90,
+        "Grande": 62.90,
         "Família": 72.90
       }
     },
@@ -46,9 +46,9 @@ const Cardapio = () => {
       descricao: "Sabor tradicional com ingredientes de qualidade",
       ingredientes: ["Molho de tomate", "Mussarela", "Presunto", "Ovos", "Cebola", "Azeitonas", "Pimentão"],
       valores: {
-        "P": 40.90,
-        "M": 50.90,
-        "G": 60.90,
+        "Pequena": 40.90,
+        "Média": 50.90,
+        "Grande": 60.90,
         "Família": 70.90
       }
     }

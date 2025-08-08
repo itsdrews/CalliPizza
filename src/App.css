@@ -10,11 +10,10 @@
   padding: 0;
   box-sizing: border-box;
   box-shadow: none;
+  max-width: 144rem;
 }
-#root{
+body{
   margin: 0 auto;
-  padding: 0;
-  width: 100%;
   height: 100vh;
   background-color: var(--color-background);
 }
@@ -27,7 +26,7 @@
   font-family: "Lilita One", sans-serif;
   font-weight: 400;
   font-style: normal;
-  
+  height: auto
 }
 .logo-name-container{
   display: flex;
@@ -44,13 +43,12 @@
   font-size: 8rem;
   height: 9.1rem;
   color: var(--color-background);
+
 }
 .navigation-bar{
   background-color:var(--color-secondary);
   height: 8.5rem;
-
-
-
+  width: 100%;
 }
 .navbar-menu{ 
   display: flex;
@@ -70,6 +68,7 @@
   display: flex;
   margin: 0 auto;
   text-align: center;
+  font-family: 'Open-sans','sans-serif';
   
 }
 .nav-link{
@@ -95,37 +94,85 @@ footer{
 }
 .pizza-image{
   background-color:black;
-  height: 10rem;
-  width: auto;
+  height: auto;
+  width: 15rem;
   margin-left: 2rem;
 }
 .pizza-card{
   border-radius: 2rem;
   display: flex;
-  margin: 0 auto;
   width: 80%;
   height: 15rem;
   gap: 4.1rem;
   align-items: center;
-  background-color: var(--color-secondary);
-  font-family: "Lilita One", sans-serif;
+  background-color: var(--color-primary);
+  font-family: "Open-sans", sans-serif;
   font-weight: 400;
 }
-.pizza-header h3{
+.pizza-header h2{
   color: var(--color-background);
-  font-size: 3rem;
+  font-size: 1.5rem;
 }
 .pizza-ingredients{
   margin-top: 0;
   color: var(--color-tertiary);
 }
 .cardapio-container{
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
+  background-color: var(--color-background);
 }
 .pizzas-grid{
-  margin-top: 2rem;
-  display: grid;
-  gap: 4rem
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 0 auto;
 
+}
+.pizza-prices{
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
+  justify-content: space-between;  
+}
+.price-item{
+  display: flex;
+  flex-direction: column;
+  color: var(--color-background);
+  gap: 1rem;
+  align-items:center;
+}
+.size-price{
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.inside-separator{
+  display: flex;
+}
+.cart-image-container{
+  width: 5rem;
+  background-color: var(--color-secondary);
+  border-radius: 1rem;
+  align-items: center;
+  margin-top: 2rem;
+}
+.cart-image{
+  width: 3.15rem;
+  height: 3.3rem;
+}
+.cart-image-container:hover{
+  cursor: pointer;
+}
+.price-separator {
+  height: 10rem; /* Altura da linha */
+  width: 1px;
+  background-color:var(--color-background); /* Cor da linha */
+  margin: 0 15px; /* Espaçamento */
+}
+.outer-container{
+  display: flex;
 }

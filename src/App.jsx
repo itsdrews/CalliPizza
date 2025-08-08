@@ -10,7 +10,7 @@ function App() {
     <>
    <Header></Header>
    <Cardapio></Cardapio>
-   <Footer></Footer>
+
 
     </>
   )
