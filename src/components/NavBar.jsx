@@ -1,7 +1,6 @@
 
 import Cardapio from '../pages/Cardapio'
-import Entregas from '../pages/Comanda'
-import Carrinho from '../pages/Carrinho'
+import Comanda from '../pages/Comanda'
 import Cozinha from '../pages/Cozinha'
 
 import {Link, NavLink} from 'react-router-dom'

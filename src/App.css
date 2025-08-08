@@ -48,6 +48,7 @@ body{
 .navigation-bar{
   background-color:var(--color-secondary);
   height: 8.5rem;
+
 }
 .navbar-menu{ 
   display: flex;
@@ -55,34 +56,30 @@ body{
   gap: 4.2rem;
   list-style: none;
   padding: 0;
-  margin: 0 24rem;
-  align-items: center;
-  text-align: center;
+  margin: 0 24rem;  
   height: 8.5rem;
-  width: 95rem;
+  width:auto;
 }
 
 .nav-item{
-  height: 100%;
-  display: flex;
-  margin: 0 auto;
-  text-align: center;
-  font-family: 'Open-sans','sans-serif';
-  
+  margin-top: 2rem;
 }
 .nav-link{
-  background-color: var(--color-secondary);
   text-decoration: none;
   font-size: 3.2rem;
   color:var(--color-background);
+  background-color: var(--color-secondary);
+
+
 }
-.nav-item .active {
+
+.nav-item .nav-link.active {
   background-color: var(--color-background);
   font-weight: 600;
   color: var(--color-primary);
-  height: 100%;
-  margin-top: 0;
 }
+ 
+
 footer{
   background-color: var(--color-primary);
   height: 2.7rem;
@@ -94,7 +91,7 @@ footer{
 .pizza-image{
   background-color:black;
   height: auto;
-  width: 15rem;
+  width: 25%;
   margin-left: 2rem;
 }
 .pizza-card{
@@ -123,7 +120,7 @@ footer{
   background-color: var(--color-background);
 }
 .pizzas-grid{
-  width: 60%;
+  width: 85%;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -153,15 +150,16 @@ footer{
   display: flex;
 }
 .cart-image-container{
-  width: 5rem;
   background-color: var(--color-secondary);
   border-radius: 1rem;
   align-items: center;
   margin-top: 2rem;
+  
 }
 .cart-image{
-  width: 3.15rem;
-  height: 3.3rem;
+  width: 30%;
+  height: auto;
+  border-radius: 4px;
 }
 .cart-image-container:hover{
   cursor: pointer;
