@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Carrinho = () => {
+const Comanda = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const Carrinho = () => {
   )
 }
 
-export default Carrinho
+export default Comanda

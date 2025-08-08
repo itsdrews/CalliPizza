@@ -1,6 +1,6 @@
 
 import Cardapio from '../pages/Cardapio'
-import Entregas from '../pages/Entregas'
+import Entregas from '../pages/Comanda'
 import Carrinho from '../pages/Carrinho'
 import Cozinha from '../pages/Cozinha'
 
@@ -29,21 +29,11 @@ const NavBar = () => {
       </li>
        <li className='nav-item'>
         <NavLink
-        to="/entregas"
+        to="/comanda"
         end
         className={({isActive}) => isActive? 'nav-link active':'nav-link'
       }>
-        Entregas
-      </NavLink>
-
-      </li>
-       <li className='nav-item'>
-        <NavLink
-        to="/carrinho"
-        end
-        className={({isActive}) => isActive? 'nav-link active':'nav-link'
-      }>
-        Carrinho
+        Comanda
       </NavLink>
 
       </li>
@@ -54,6 +44,16 @@ const NavBar = () => {
         className={({isActive}) => isActive? 'nav-link active':'nav-link'
       }>
         Cozinha
+      </NavLink>
+
+      </li>
+       <li className='nav-item'>
+        <NavLink
+        to="/entrega"
+        end
+        className={({isActive}) => isActive? 'nav-link active':'nav-link'
+      }>
+        Entrega
       </NavLink>
 
       </li>
