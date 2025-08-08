@@ -4,7 +4,7 @@
   --color-background: #E7D7C1;
   --color-tertiary: #A78A7F;
   --color-dark: #735751;
-  font-size: 62.5%; 
+  font-size: 10px; 
 }
 
 body{
@@ -40,6 +40,11 @@ body{
   font-style: bold;
 
 }
+.navigation-bar{
+  font-family: "poppins", sans-serif;
+  width: 100%;
+  background-color: var(--color-secondary);
+}
 .navbar-menu{ 
   display: flex;
   flex-direction: row;
@@ -57,7 +62,8 @@ body{
   height: 100%;
   text-decoration: none;
   font-size: 3.2rem;
-  color: var(--color-background);
+  color: var(--color-background); 
+ 
 
 }
 .nav-link.active{
@@ -67,36 +73,46 @@ body{
 
 footer{
   background-color: var(--color-primary);
-  height: 2.7rem;
   color: var(--color-background);
   text-align: center;
   margin-bottom: 0;
   width: 100%;
-}
-.pizza-image{
-  background-color:black;
-  height: auto;
-  width: 25%;
-  margin-left: 2rem;
+  font-size: 2.4rem;
 }
 .pizza-card{
-  border-radius: 2rem;
+  border-radius: 3rem;
   display: flex;
-  width: 80%;
-  height: 15rem;
+  flex-direction: row;
+  padding: 0;
+  width: auto;
+  height:32rem;
   gap: 4.1rem;
-  align-items: center;
   background-color: var(--color-primary);
   font-family: "Open-sans", sans-serif;
   font-weight: 400;
 }
+.pizza-image{
+  position: relative;
+  background-color: black;
+  border-radius: 4rem;
+  max-width: 32rem;
+  margin: 2rem 4.1rem 1.6rem 2.4rem ;
+
+}
+.pizza-header{
+  margin: 2rem 2.5rem 3rem 0;
+ 
+}
 .pizza-header h2{
-  color: var(--color-background);
-  font-size: 1.5rem;
+  font-family: "poppins", sans-serif;
+  color: #FFFF;
+  font-size: 3.2rem;
 }
 .pizza-ingredients{
   margin-top: 0;
-  color: var(--color-tertiary);
+  color: var(--color-background );
+  font-size: 2.2rem;
+   font-family: "poppins", sans-serif;
 }
 .cardapio-container{
   margin-top: 1rem;
@@ -118,12 +134,14 @@ footer{
   text-align: center;
   align-items: center;
   justify-content: space-between;  
+  font-size: 2.4rem;
+  font-family: "poppins", sans-serif;
 }
 .price-item{
   display: flex;
   flex-direction: column;
   color: var(--color-background);
-  gap: 1rem;
+
   align-items:center;
 }
 .size-price{
@@ -136,15 +154,18 @@ footer{
 }
 .cart-image-container{
   background-color: var(--color-secondary);
-  border-radius: 1rem;
+  border-radius: 3rem;
   align-items: center;
   margin-top: 2rem;
+  padding: 1.1rem 2.8rem;
+  max-width: 5.3rem;
+  max-height: 9rem;
   
 }
 .cart-image{
-  width: 30%;
+  border-radius: 4rem;
   height: auto;
-  border-radius: 4px;
+  max-width: 3.1rem;
 }
 .cart-image-container:hover{
   cursor: pointer;
