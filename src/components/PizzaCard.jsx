@@ -4,7 +4,7 @@ const PizzaCard = ({ pizza }) => {
    const ingredientesString = pizza.ingredientes.join(', ')
   return (
     <div className="pizza-card">
-      <img  className='pizza-image' src='public/pizza-piece.svg'></img>
+      <img  className='pizza-image' src='/pizza-piece.svg'></img>
       <div className="pizza-header">
         <h2>{pizza.nome}</h2>
         <p className="pizza-ingredients">{ingredientesString}</p>

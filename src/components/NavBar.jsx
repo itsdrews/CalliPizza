@@ -13,14 +13,16 @@ const NavBar = () => {
        <ul className="navbar-menu">
 
       <li className='nav-item'>
-    
-           <NavLink
+      
+        <NavLink
         to="/"
         end
         className={({isActive}) => isActive? 'nav-link active':'nav-link'
       }>
         Cardápio
       </NavLink>
+ 
+         
           
         
        

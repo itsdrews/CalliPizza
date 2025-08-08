@@ -6,12 +6,7 @@
   --color-dark: #735751;
   font-size: 62.5%; 
 }
-*{
-  padding: 0;
-  box-sizing: border-box;
-  box-shadow: none;
-  max-width: 144rem;
-}
+
 body{
   margin: 0 auto;
   height: 100vh;
@@ -23,15 +18,12 @@ body{
   flex-direction: column;
   background-color: var(--color-primary);
   text-align: center;
-  font-family: "Lilita One", sans-serif;
-  font-weight: 400;
-  font-style: normal;
   height: auto;
 }
 .logo-name-container{
   display: flex;
   align-items: center;
-  text-align: center  ;
+  text-align: center;
 }
 .logo{
   margin: 8.4rem 3.6rem 10rem 7.2rem  ; 
@@ -43,11 +35,9 @@ body{
   font-size: 8rem;
   height: 9.1rem;
   color: var(--color-background);
-
-}
-.navigation-bar{
-  background-color:var(--color-secondary);
-  height: 8.5rem;
+  font-family: "Lilita One", sans-serif;
+  font-weight: 400;
+  font-style: bold;
 
 }
 .navbar-menu{ 
@@ -55,30 +45,25 @@ body{
   flex-direction: row;
   gap: 4.2rem;
   list-style: none;
-  padding: 0;
-  margin: 0 24rem;  
+  margin: 0 auto;
+  width: 100%;
+  background-color:var(--color-secondary);
   height: 8.5rem;
-  width:auto;
 }
 
-.nav-item{
-  margin-top: 2rem;
-}
 .nav-link{
+  display: block;
+  padding: 2rem;
+  height: 100%;
   text-decoration: none;
   font-size: 3.2rem;
-  color:var(--color-background);
-  background-color: var(--color-secondary);
-
+  color: var(--color-background);
 
 }
-
-.nav-item .nav-link.active {
+.nav-link.active{
   background-color: var(--color-background);
-  font-weight: 600;
-  color: var(--color-primary);
+  color: var(--color-secondary);
 }
- 
 
 footer{
   background-color: var(--color-primary);
