@@ -1,9 +1,12 @@
 import React from 'react';
 
-const PizzaCard = ({ pizza }) => {
+const PizzaCard = ({ pizza, cardMode }) => {
    const ingredientesString = pizza.ingredientes.join(', ')
-  return (
-    <div className="pizza-card">
+   const renderCardContent = () => {
+    switch(cardMode) {
+      case 'cardapio':
+        console.log("Modo Cardapio!")
+        return(<div className="pizza-card">
       <img  className='pizza-image' src='/pizza-piece.svg'></img>
 
       <div className="pizza-info">
@@ -13,9 +16,9 @@ const PizzaCard = ({ pizza }) => {
           </div>
         <p className="pizza-ingredients">{ingredientesString}</p>
          <div className="pizza-footer">
-          {Object.entries(pizza.valores).map(([tamanho, valor],index) => (
+          {Object.entries().map(([tamanho, valor]) => (
             <div key={tamanho} className="price-item">
-            {index > 0 && <div className="price-separator"></div>}
+        
                <div className="size-price">
 
               <span className="size">{tamanho}:</span>
@@ -36,8 +39,52 @@ const PizzaCard = ({ pizza }) => {
        
     
      
+    </div>);
+
+    case 'comanda': 
+          console.log("Modo comanda")
+    return(<div className="pizza-card">
+      
+        <div className="pizza-quantity-container">
+          <h1 className='pizza-quantity'>{pizza.quantidade}x</h1>
+        
+        </div>
+
+      <div className="pizza-info">
+
+      <div className="pizza-header">
+        <h2>{pizza.nome} - {pizza.tamanho}</h2>
+        <p className="pizza-ingredients-comanda">{ingredientesString}</p>
+          </div>
+         
+      </div>
+      <div className="pizza-footer-comanda">
+    
+            <div key={pizza.tamanho} className="price-item-comanda">
+               <div className="size-price-comanda">
+              <span className="price-comanda">R$ {pizza.valor.toFixed(2)}</span>
+
+            
+
+               </div>
+                </div>
+              
+        
+      
+       
+      </div>
+    
+     
+    </div>);
+    }
+   }
+  return (
+    <div className={`pizza-card ${cardMode}`}>
+    {
+    renderCardContent()}
     </div>
-  );
+  )
+   
 };
 
 export default PizzaCard;

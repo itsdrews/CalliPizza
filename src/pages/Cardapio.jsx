@@ -62,7 +62,7 @@ const Cardapio = () => {
     <div className="cardapio-container">      
       <div className="pizzas-grid">
         {pizzas.slice(0,3).map((pizza) => (
-          <PizzaCard key={pizza.id} pizza={pizza} />
+          <PizzaCard key={pizza.id} pizza={pizza} cardMode={"cardapio"} />
         ))}
       </div>
       

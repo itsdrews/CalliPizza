@@ -174,3 +174,28 @@ footer{
   margin: 0 4.5rem; /* Espaçamento */
 }
 
+.comanda-container{
+  margin: 0 7.2rem;
+  width: 100%;
+}
+.pizza-quantity-container{
+
+  position: relative;
+  background-color:var();
+  border-radius: 4rem;
+  width: 32rem;
+  margin: 2rem 4.1rem 1.6rem 2.4rem;
+
+
+}
+.pizza-ingredients-comanda{
+  font-family: "poppins",sans-serif;
+  color: var(--color-background);
+  font-size: 2.4rem;
+  max-width: fit-content;
+}
+.pizza-quantity{
+  color: #E7D7C1;
+  margin: 9rem 10rem;
+  font-size: 6.4rem;
+}
