@@ -1,6 +1,7 @@
 import React from 'react';
 import PizzaCard from '../components/PizzaCard';
-
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const Cardapio = () => {
   const pizzas = [
@@ -53,8 +54,11 @@ const Cardapio = () => {
       }
     }
   ];
+  
+  return (<>
 
-  return (
+
+    <Header></Header>
     <div className="cardapio-container">      
       <div className="pizzas-grid">
         {pizzas.slice(0,3).map((pizza) => (
@@ -64,6 +68,9 @@ const Cardapio = () => {
       
     
     </div>
+    <Footer></Footer>
+
+  </>
   );
 };
 

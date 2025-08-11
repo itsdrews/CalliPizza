@@ -1,10 +1,16 @@
 import React from 'react'
-
+import Header from '../components/Header'
+import Footer from '../components/Footer'
 const Comanda = () => {
   return (
-    <div>
-      
-    </div>
+    <>
+    <Header></Header>
+    <h1>COMANDA AQUi</h1>
+    <Footer></Footer>
+
+
+    </>
+   
   )
 }
 

@@ -43,18 +43,19 @@ body{
 }
 .navigation-bar{
   font-family: "poppins", sans-serif;
-  width: 100%;
   background-color: var(--color-secondary);
+  margin: 0 auto;
+  width: 100%;
 }
 .navbar-menu{ 
   display: flex;
   flex-direction: row;
   gap: 4.2rem;
   list-style: none;
-  margin: 0 auto;
-  width: 100%;
+  margin: 0 23rem 0;
   background-color:var(--color-secondary);
   height: 8.5rem;
+
 }
 
 .nav-link{

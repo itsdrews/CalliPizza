@@ -21,12 +21,7 @@ const NavBar = () => {
       }>
         Cardápio
       </NavLink>
- 
-         
-          
-        
-       
-
+      
       </li>
        <li className='nav-item'>
         <NavLink
