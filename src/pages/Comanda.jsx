@@ -15,24 +15,24 @@ const Comanda = () => {
     },
      {
       id: 2,
-      nome: "Margherita",
-      tamanho: "Grande",
+      nome: "Calabresa",
+      tamanho: "Média",
       descricao: "A clássica pizza italiana com ingredientes frescos",
       ingredientes: ["Molho de tomate", "Mussarela premium", "Manjericão fresco", "Azeite de oliva"],
-      valor: 43,
-      quantidade: 1
+      valor: 50,
+      quantidade: 3
     },
      {
       id: 3,
-      nome: "Margherita",
-      tamanho: "Grande",
+      nome: "Frango com Catupiry",
+      tamanho: "Família",
       descricao: "A clássica pizza italiana com ingredientes frescos",
       ingredientes: ["Molho de tomate", "Mussarela premium", "Manjericão fresco", "Azeite de oliva"],
-      valor: 43,
-      quantidade: 1
+      valor: 65,
+      quantidade: 4
     }
   ];
-  console.log(Object.entries(comanda))
+ 
   return (
     <>
     <Header></Header>

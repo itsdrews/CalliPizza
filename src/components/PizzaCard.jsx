@@ -60,13 +60,12 @@ const PizzaCard = ({ pizza, cardMode }) => {
       </div>
       <div className="pizza-footer-comanda">
     
-            <div key={pizza.tamanho} className="price-item-comanda">
-               <div className="size-price-comanda">
+            <div className="price-item-comanda">
               <span className="price-comanda">R$ {pizza.valor.toFixed(2)}</span>
-
-            
-
-               </div>
+           
+               <button className='quantity-button'>+</button>
+               <button className='quantity-button'>-</button>
+              <button className='delete-button'>excluir</button>
                 </div>
               
         
