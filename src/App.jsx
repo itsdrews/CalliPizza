@@ -1,19 +1,10 @@
+import React from "react";
 
-import './App.css'
-import Header from './components/Header'
-import Footer from './components/Footer'
-import Cardapio from './pages/Cardapio'
-import Comanda from './pages/Comanda'
+import "./App.css";
+import AppRoutes from "./routes/AppRoutes";
 
 function App() {
-
-  return (
-    <>
-    <Comanda></Comanda>
-
-
-    </>
-  )
+  return <AppRoutes />;
 }
 
-export default App
+export default App;

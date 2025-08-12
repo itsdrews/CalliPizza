@@ -2,14 +2,14 @@ import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-const Admin = () => {
+const Entrega = () => {
   return (
     <>
       <Header />
-      <div>Admin</div>
+      <h1>Entrega</h1>
       <Footer />
     </>
   );
 };
 
-export default Admin;
+export default Entrega;
