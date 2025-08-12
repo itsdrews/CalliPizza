@@ -234,3 +234,7 @@ footer{
   cursor: pointer;
 
 }
+.total{
+  font-size: 2rem;
+  font-family: "poppins",sans-serif;
+}
