@@ -16,9 +16,9 @@ const PizzaCard = ({ pizza, cardMode }) => {
           </div>
         <p className="pizza-ingredients">{ingredientesString}</p>
          <div className="pizza-footer">
-          {Object.entries().map(([tamanho, valor]) => (
+          {Object.entries(pizza.valores).map(([tamanho, valor],index) => (
             <div key={tamanho} className="price-item">
-        
+              {index > 0 && <div className="price-separator"></div>}
                <div className="size-price">
 
               <span className="size">{tamanho}:</span>
