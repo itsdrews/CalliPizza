@@ -54,17 +54,21 @@ const Comanda = () => {
         <div className="table">
           <h2>Mesa</h2>
           <p>Número da mesa</p>
-          <p>{comanda.mesa}</p>
+          <p className='mesa-comanda'>01</p>
         </div>
+        <div className="delivery-separator"></div>
         <div className="delivery">
           <h2>Entrega</h2>
           <p>Endereço</p>
-          <label htmlFor="">Endereço de entrega <input className='address-input-container'  placeholder='Digite o endereço de entrega'type="text" /> </label>
+          <input className='address-input-container' type='text' placeholder='Digite o endereço de entrega'/>
          
         </div>
       </div>
+      <div className="total-submit">
+
       <p className='total'>Total: R$ {calcularTotal(comanda)}</p>
-  
+      <button onSubmit={console.log("Submit do button")}>ENVIAR PARA A COZINHA</button>
+      </div>
     </div>
     <Footer></Footer>
 

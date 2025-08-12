@@ -65,7 +65,7 @@ const PizzaCard = ({ pizza, cardMode }) => {
            
                <button className='quantity-button'>+</button>
                <button className='quantity-button'>-</button>
-              <button className='delete-button'>excluir</button>
+              <button className='delete-button'><img className='delete-button-image' src="/thrash-can.svg" alt="" /> </button>
                 </div>
               
         
@@ -83,7 +83,7 @@ const PizzaCard = ({ pizza, cardMode }) => {
     renderCardContent()}
     </div>
   )
-   
+
 };
 
 export default PizzaCard;
