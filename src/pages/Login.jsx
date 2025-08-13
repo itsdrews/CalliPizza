@@ -18,11 +18,11 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (codigo === "1" && senha === "1") {
+    if (codigo === "123" && senha === "123") {
       login({ nome: "Funcionario", codigo }, "fake-jwt-token");
       navigate("/cardapio");
     } else {
-      if (codigo === "987654321" && senha === "123456") {
+      if (codigo === "321" && senha === "321") {
         login({ nome: "Administrador", codigo }, "fake-jwt-token");
         navigate("/admin");
       } else {
