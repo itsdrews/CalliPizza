@@ -2,85 +2,92 @@ import React from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import PizzaCard from '../components/PizzaCard'
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
 const Comanda = () => {
     // TO DO: ACESSAR PEDIDOS ANINHADO EM COMANDA
-    const comandas = [{
+  const comandas = [{
 
-        mesa:1,
-        endereco: null,
-        pedido:[{
-      id: 1,
-      nome: "Margherita",
-      tamanho: "Grande",
-      descricao: "A clássica pizza italiana com ingredientes frescos",
-      ingredientes: ["Molho de tomate", "Mussarela premium", "Manjericão fresco", "Azeite de oliva"],
-      valor: 43,
-      quantidade: 1
-    },
-     {
-      id: 2,
-      nome: "Calabresa",
-      tamanho: "Média",
-      descricao: "A clássica pizza italiana com ingredientes frescos",
-      ingredientes: ["Molho de tomate", "Mussarela premium", "Manjericão fresco", "Azeite de oliva"],
-      valor: 50,
-      quantidade: 3
-    },
-     {
-      id: 3,
-      nome: "Frango com Catupiry",
-      tamanho: "Família",
-      descricao: "A clássica pizza italiana com ingredientes frescos",
-      ingredientes: ["Molho de tomate", "Mussarela premium", "Manjericão fresco", "Azeite de oliva"],
-      valor: 65,
-      quantidade: 4
-    }
-    
-  ]
+      mesa:1,
+      endereco: null,
+      pedido:[{
+    id: 1,
+    nome: "Margherita",
+    tamanho: "Grande",
+    descricao: "A clássica pizza italiana com ingredientes frescos",
+    ingredientes: ["Molho de tomate", "Mussarela premium", "Manjericão fresco", "Azeite de oliva"],
+    valor: 43,
+    quantidade: 1
+  },
+    {
+    id: 2,
+    nome: "Calabresa",
+    tamanho: "Média",
+    descricao: "A clássica pizza italiana com ingredientes frescos",
+    ingredientes: ["Molho de tomate", "Mussarela premium", "Manjericão fresco", "Azeite de oliva"],
+    valor: 50,
+    quantidade: 3
+  },
+    {
+    id: 3,
+    nome: "Frango com Catupiry",
+    tamanho: "Família",
+    descricao: "A clássica pizza italiana com ingredientes frescos",
+    ingredientes: ["Molho de tomate", "Mussarela premium", "Manjericão fresco", "Azeite de oliva"],
+    valor: 65,
+    quantidade: 4
+  }
+  
+]
 },
 {
 
-        mesa:2,
-        endereco: null,
-        pedido:[
-     {
-      id: 1,
-      nome: "Calabresa",
-      tamanho: "Média",
-      descricao: "A clássica pizza italiana com ingredientes frescos",
-      ingredientes: ["Molho de tomate", "Mussarela premium", "Manjericão fresco", "Azeite de oliva"],
-      valor: 50,
-      quantidade: 3
-    },
-     
+      mesa:2,
+      endereco: null,
+      pedido:[
+    {
+    id: 1,
+    nome: "Calabresa",
+    tamanho: "Média",
+    descricao: "A clássica pizza italiana com ingredientes frescos",
+    ingredientes: ["Molho de tomate", "Mussarela premium", "Manjericão fresco", "Azeite de oliva"],
+    valor: 50,
+    quantidade: 3
+  },
     
-  ]
+  
+]
 }
 ]
-  const [numeroBusca,setNumeroBusca] = useState(0)
-  const [mesaSelected,setMesaSelected] =useState(null);
+  const [numeroBusca, setNumeroBusca] = useState('');
+  const [mesaSelecionada, setMesaSelecionada] = useState(null);
+
+  // Busca automática quando numeroBusca muda
+  useEffect(() => {
+    const numero = parseInt(numeroBusca);
+    const mesaEncontrada = comandas.find(c => c.mesa === numero);
+    setMesaSelecionada(mesaEncontrada || null);
+  }, [numeroBusca, comandas]);
 
   const handleBuscaChange = (e) => {
-    setNumeroBusca(parseInt(e.target.value)||0 );
-    setMesaSelected(numeroBusca)
-  }
-  const mesaFiltrada = comandas.filter(comanda =>
-    comanda.mesa===numeroBusca
-  )
-  const pedidos = mesaFiltrada? mesaFiltrada.find (c => c.mesa ===mesaSelected)?.pedido|| []:[];
+    // Aceita apenas números ou campo vazio
+    if (e.target.value === '' || /^\d+$/.test(e.target.value)) {
+      setNumeroBusca(e.target.value);
+    }
+  };
 
+  // Obtém pedidos da mesa selecionada
+  const pedidos = mesaSelecionada ? mesaSelecionada.pedido : [];
 
+  const calcularTotal = (pedidos) =>{
 
-const calcularTotal = (pedidos) =>{
-
-  const total = pedidos.reduce(
-    (total,item) => total + (item.valor * item.quantidade),0
-  );
+    const total = pedidos.reduce(
+      (total,item) => total + (item.valor * item.quantidade),0
+    );
   
   return total
 
- }
+  }
+
   return (
     <>
     <Header></Header>
@@ -99,6 +106,7 @@ const calcularTotal = (pedidos) =>{
           <div className="busca-mesa">
 
             <input 
+            className='mesa-comanda'
               type ="text"
               value={numeroBusca}
               onChange={(e) =>handleBuscaChange(e)}
@@ -117,7 +125,7 @@ const calcularTotal = (pedidos) =>{
       <div className="total-submit">
 
       <p className='total'>Total: R$ {calcularTotal(pedidos)}</p>
-      <button onSubmit={console.log("Submit do button")}>ENVIAR PARA A COZINHA</button>
+      <button>ENVIAR PARA A COZINHA</button>
       </div>
     </div>
     <Footer></Footer>

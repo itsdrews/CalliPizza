@@ -87,6 +87,7 @@ footer {
   align-items: center;
   justify-content: center;
 }
+/* CARD CARDAPIO */
 .pizza-card {
   border-radius: 3rem;
   display: flex;
@@ -121,7 +122,6 @@ footer {
   font-family: "poppins", sans-serif;
   max-height: 4.5rem;
 }
-
 .cardapio-container {
   margin-top: 1rem;
   display: flex;
@@ -143,7 +143,6 @@ footer {
   padding: 1.05rem 2.5rem;
 }
 .pizza-footer {
-  font-family: "poppins", sans-serif;
   color: var(--color-background);
   font-size: 2.4rem;
   display: flex;
@@ -174,6 +173,7 @@ footer {
   margin: 0 4.5rem; /* Espaçamento */
 }
 
+/* CARD DA COMANDA */
 .comanda-container {
   margin: 0 7.2rem;
   width: 100%;
@@ -196,7 +196,6 @@ footer {
   margin: 9rem 10rem;
   font-size: 6.4rem;
 }
-
 .pizza-footer-comanda {
   margin:0 auto;
   max-width: 50%;
@@ -207,8 +206,6 @@ footer {
   flex-direction: row;
   font-size: 4.8rem;
   align-items: center;
-
-
   margin: 0 auto;   
   height: 100%;
   width: 100%;
@@ -233,8 +230,7 @@ footer {
   background-color: var(--color-background);
   border: none;
   border-radius: 1.2rem;
-  color: #ffff;
-   width: 8.8rem;
+  width: 8.8rem;
   height: 8.8rem;
   margin-right: 5.2rem;
 
@@ -244,7 +240,6 @@ footer {
 }
 
 .total {
-  font-family: "poppins", sans-serif;
   font-size: 4.8rem;
   color: var(--color-darker);
   font-weight: bold;
@@ -345,14 +340,13 @@ footer {
   background-color: var(--color-primary);
   color: var(--color-background);
 }
-
+/* TIPO DE ENTREGA (MESA OU DELIVERY) */
 .delivery-type-container{
   margin: 3.2rem auto;
   height: 32rem;
   max-width: 129rem;
   display: flex;
   flex-direction: row;
-   font-family: "poppins",sans-serif;
   color: var(--color-darker);
 }
 .delivery-separator{
@@ -397,7 +391,6 @@ footer {
 
 }
 .total-submit{
-  font-family: "poppins",sans-serif;
   max-width: 91.6rem;
   display: flex;
   flex-direction: row;
@@ -405,30 +398,18 @@ footer {
   margin: 0 auto;
   align-items: center;
 }
-.total{
-  font-size: 4.8rem;
-  font-family: "poppins",sans-serif;
-  color: var(--color-darker);
-  font-weight: bold;
-  max-width: 38.8rem;
-  margin: 0 auto;
-}
-.total-submit button {
-  background-color: var(--color-darker);
-  border-radius: 1.2rem;
-  width: 48rem;
-  height: 6.7rem;
-  margin: 0 auto;
-  color: var(--color-background);
-  font-size: 2.4rem;
-  font-weight: bold;
 
-}
 .mesa-comanda{
   width: 8.8rem;
   height: auto;
   font-size: 2.4rem;
   margin-bottom: 0;
-  border: .5rem solid var(--color-dark);
+  border: .5rem solid var(--color-darker);
   border-radius: 1.2rem;
+  background-color: var(--color-dark);
+  padding: 1rem;
+}
+.comanda-not-found{
+  font-size: 4.8rem;
+  color: var(--color-primary);
 }
