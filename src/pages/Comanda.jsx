@@ -2,9 +2,14 @@ import React from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import PizzaCard from '../components/PizzaCard'
+import {useState} from 'react'
 const Comanda = () => {
-    const comanda = [
-    {
+    // TO DO: ACESSAR PEDIDOS ANINHADO EM COMANDA
+    const comandas = [{
+
+        mesa:1,
+        endereco: null,
+        pedido:[{
       id: 1,
       nome: "Margherita",
       tamanho: "Grande",
@@ -31,10 +36,16 @@ const Comanda = () => {
       valor: 65,
       quantidade: 4
     }
-  ];
- const calcularTotal = (comanda) =>{
+    
+  ]
+}]
+const [mesaSelected,setMesaSelected] =useState(comandas[0].mesa);
 
-  const total = comanda.reduce(
+const pedidos = comandas.find (c => c.mesa ===mesaSelected)?.pedido || [];
+
+ const calcularTotal = (pedidos) =>{
+
+  const total = pedidos.reduce(
     (total,item) => total + (item.valor * item.quantidade),0
   );
   
@@ -46,7 +57,7 @@ const Comanda = () => {
     <Header></Header>
     <div className="cardapio-container">
       <div className="pizzas-grid">
-        {comanda.map((pizza) => (
+        {pedidos.map((pizza) => (
           <PizzaCard key={pizza.id} pizza={pizza} cardMode={"comanda"}/>
         ))}
       </div>
@@ -54,7 +65,7 @@ const Comanda = () => {
         <div className="table">
           <h2>Mesa</h2>
           <p>Número da mesa</p>
-          <p className='mesa-comanda'>01</p>
+          <button className='mesa-comanda'>{mesaSelected}</button>
         </div>
         <div className="delivery-separator"></div>
         <div className="delivery">
@@ -66,7 +77,7 @@ const Comanda = () => {
       </div>
       <div className="total-submit">
 
-      <p className='total'>Total: R$ {calcularTotal(comanda)}</p>
+      <p className='total'>Total: R$ {calcularTotal(pedidos)}</p>
       <button onSubmit={console.log("Submit do button")}>ENVIAR PARA A COZINHA</button>
       </div>
     </div>

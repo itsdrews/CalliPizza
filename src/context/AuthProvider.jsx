@@ -4,8 +4,13 @@ import { AuthContext } from "./AuthContext";
 
 const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
-  const [usuario, setUsuario] = useState(null);
-  const [token, setToken] = useState(null);
+  const [usuario, setUsuario] = useState(() => {
+  const savedUser = localStorage.getItem("usuario");
+  return savedUser ? JSON.parse(savedUser) : null;
+});
+
+const [token, setToken] = useState(() => localStorage.getItem("token"));
+  
 
   useEffect(() => {
     const tokenSalvo = localStorage.getItem("token");
