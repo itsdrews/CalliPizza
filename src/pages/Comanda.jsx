@@ -38,12 +38,41 @@ const Comanda = () => {
     }
     
   ]
-}]
-const [mesaSelected,setMesaSelected] =useState(comandas[0].mesa);
+},
+{
 
-const pedidos = comandas.find (c => c.mesa ===mesaSelected)?.pedido || [];
+        mesa:2,
+        endereco: null,
+        pedido:[
+     {
+      id: 1,
+      nome: "Calabresa",
+      tamanho: "Média",
+      descricao: "A clássica pizza italiana com ingredientes frescos",
+      ingredientes: ["Molho de tomate", "Mussarela premium", "Manjericão fresco", "Azeite de oliva"],
+      valor: 50,
+      quantidade: 3
+    },
+     
+    
+  ]
+}
+]
+  const [numeroBusca,setNumeroBusca] = useState(0)
+  const [mesaSelected,setMesaSelected] =useState(null);
 
- const calcularTotal = (pedidos) =>{
+  const handleBuscaChange = (e) => {
+    setNumeroBusca(parseInt(e.target.value)||0 );
+    setMesaSelected(numeroBusca)
+  }
+  const mesaFiltrada = comandas.filter(comanda =>
+    comanda.mesa===numeroBusca
+  )
+  const pedidos = mesaFiltrada? mesaFiltrada.find (c => c.mesa ===mesaSelected)?.pedido|| []:[];
+
+
+
+const calcularTotal = (pedidos) =>{
 
   const total = pedidos.reduce(
     (total,item) => total + (item.valor * item.quantidade),0
@@ -51,21 +80,31 @@ const pedidos = comandas.find (c => c.mesa ===mesaSelected)?.pedido || [];
   
   return total
 
- }// ##To do: Container da mesa e lógica de comanda
+ }
   return (
     <>
     <Header></Header>
     <div className="cardapio-container">
       <div className="pizzas-grid">
-        {pedidos.map((pizza) => (
+        {pedidos.length!=0 ? pedidos.map((pizza) => (
           <PizzaCard key={pizza.id} pizza={pizza} cardMode={"comanda"}/>
-        ))}
+        )): <h1 className='comanda-not-found'>
+          Comanda não encontrada!
+        </h1>}
       </div>
       <div className="delivery-type-container">
         <div className="table">
           <h2>Mesa</h2>
           <p>Número da mesa</p>
-          <button className='mesa-comanda'>{mesaSelected}</button>
+          <div className="busca-mesa">
+
+            <input 
+              type ="text"
+              value={numeroBusca}
+              onChange={(e) =>handleBuscaChange(e)}
+              placeholder='mesa'
+            />
+          </div>
         </div>
         <div className="delivery-separator"></div>
         <div className="delivery">

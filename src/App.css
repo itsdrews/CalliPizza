@@ -198,17 +198,21 @@ footer {
 }
 
 .pizza-footer-comanda {
-  max-width: 58rem;
-  color: #ffff;
-
+  margin:0 auto;
+  max-width: 50%;
+  color: #FFFF;
 }
 .price-item-comanda {
   display: flex;
   flex-direction: row;
   font-size: 4.8rem;
   align-items: center;
-  margin: 4.8rem 6.4rem;
-  gap: 6.4rem;
+
+
+  margin: 0 auto;   
+  height: 100%;
+  width: 100%;
+  gap: 2.4rem;
 }
 .quantity-button {
   border-radius: 1.2rem;
@@ -226,10 +230,13 @@ footer {
 }
 
 .delete-button {
-  background-color: var(--color-secondary);
+  background-color: var(--color-background);
   border: none;
   border-radius: 1.2rem;
   color: #ffff;
+   width: 8.8rem;
+  height: 8.8rem;
+  margin-right: 5.2rem;
 
 }
 .delete-button:hover {
@@ -237,8 +244,22 @@ footer {
 }
 
 .total {
-  font-size: 2rem;
   font-family: "poppins", sans-serif;
+  font-size: 4.8rem;
+  color: var(--color-darker);
+  font-weight: bold;
+  max-width: 38.8rem;
+  margin: 0 auto;
+}
+.total-submit button {
+  background-color: var(--color-darker);
+  border-radius: 1.2rem;
+  width: 48rem;
+  height: 6.7rem;
+  margin: 0 auto;
+  color: var(--color-background);
+  font-size: 2.4rem;
+  font-weight: bold;
 }
 
 /* Tela de Login */
