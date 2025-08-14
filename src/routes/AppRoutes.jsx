@@ -10,15 +10,19 @@ import Cozinha from "../pages/Cozinha";
 import Login from "../pages/Login";
 import Entrega from "../pages/Entrega";
 import NotFound from "../pages/NotFound";
+import { ComandaProvider } from "../context/ComandaContext";
 
 const AppRoutes = () => {
   return (
+
+     <ComandaProvider>
     <Routes>
       {/* Rotas Públicas */}
       <Route path="/" element={<Login />} />
       <Route path="*" element={<NotFound />} />
       {/* Rotas Protegidas */}
       <Route element={<ProtectedRoutes />}>
+     
         <Route path="/cardapio" element={<Cardapio />} />
         <Route path="/comanda" element={<Comanda />} />
         <Route path="/cozinha" element={<Cozinha />} />
@@ -26,6 +30,8 @@ const AppRoutes = () => {
         <Route path="/admin" element={<Admin />} />
       </Route>
     </Routes>
+     </ComandaProvider>
+
   );
 };
 

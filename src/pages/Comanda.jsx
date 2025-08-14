@@ -2,9 +2,9 @@ import React from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import PizzaCard from '../components/PizzaCard'
-import {useState,useEffect} from 'react'
+import {useState,useEffect,useMemo,useRef} from 'react'
 const Comanda = () => {
-    // TO DO: ACESSAR PEDIDOS ANINHADO EM COMANDA
+    
   const comandas = [{
 
       mesa:1,
@@ -58,24 +58,52 @@ const Comanda = () => {
 ]
 }
 ]
+
+
+ const [inputValue, setInputValue] = useState('');
   const [numeroBusca, setNumeroBusca] = useState('');
   const [mesaSelecionada, setMesaSelecionada] = useState(null);
+  const prevMesaRef = useRef();
 
-  // Busca automática quando numeroBusca muda
+  // Memoriza comandas
+  const comandasMemoizadas = useMemo(() => comandas, []);
+
+  // Debounce no input de busca
   useEffect(() => {
+    const handler = setTimeout(() => {
+      setNumeroBusca(inputValue);
+    }, 300);
+
+    return () => clearTimeout(handler);
+  }, [inputValue]);
+
+  // Efeito de busca corrigido
+  useEffect(() => {
+    if (!numeroBusca) {
+      if (mesaSelecionada !== null) {
+        setMesaSelecionada(null);
+      }
+      return;
+    }
+
     const numero = parseInt(numeroBusca);
-    const mesaEncontrada = comandas.find(c => c.mesa === numero);
-    setMesaSelecionada(mesaEncontrada || null);
-  }, [numeroBusca, comandas]);
+    if (isNaN(numero)) return;
+
+    const mesaEncontrada = comandasMemoizadas.find(c => c.mesa === numero);
+    
+    // Só atualiza se o resultado for diferente do anterior
+    if (JSON.stringify(mesaEncontrada) !== JSON.stringify(prevMesaRef.current)) {
+      setMesaSelecionada(mesaEncontrada || null);
+      prevMesaRef.current = mesaEncontrada;
+    }
+  }, [numeroBusca, comandasMemoizadas, mesaSelecionada]);
 
   const handleBuscaChange = (e) => {
-    // Aceita apenas números ou campo vazio
     if (e.target.value === '' || /^\d+$/.test(e.target.value)) {
-      setNumeroBusca(e.target.value);
+      setInputValue(e.target.value);
     }
   };
 
-  // Obtém pedidos da mesa selecionada
   const pedidos = mesaSelecionada ? mesaSelecionada.pedido : [];
 
   const calcularTotal = (pedidos) =>{
@@ -87,6 +115,10 @@ const Comanda = () => {
   return total
 
   }
+
+
+
+  
 
   return (
     <>
@@ -108,9 +140,10 @@ const Comanda = () => {
             <input 
             className='mesa-comanda'
               type ="text"
-              value={numeroBusca}
-              onChange={(e) =>handleBuscaChange(e)}
+              value={inputValue}
+              onChange={handleBuscaChange}
               placeholder='mesa'
+              inputMode='numeric'
             />
           </div>
         </div>

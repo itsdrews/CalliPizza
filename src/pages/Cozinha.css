@@ -1,0 +1,45 @@
+:root {
+  --color-primary: #8c1c13;
+  --color-secondary: #bf4342;
+  --color-background: #e7d7c1;
+  --color-tertiary: #a78a7f;
+  --color-dark: #735751;
+  --color-darker: #3f1b13;
+  font-size: 10px;
+  font-family: "poppins", sans-serif;
+}
+
+body {
+
+  height: 100vh;
+  background-color: var(--color-background);
+  width: 100%;
+}
+.cozinha-container{
+  margin: 0 auto;
+  max-width: 12.2rem;
+}
+.pedidos-title{
+  color: var(--color-darker);
+  font-size: 4.8rem;
+  font-weight: bold;
+}
+.pedidos-grid-container{
+  margin: 0 auto;
+  display: grid;
+  background-color: aqua; 
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-auto-rows: 10rem; /*  Altura fixa para cada linha */
+  gap: 4.2rem;
+}
+.pedidos-grid-container button{
+  width: 26.6rem;
+  height: 10.4rem;
+  background-color: var(--color-primary);
+  border: none;
+  border-radius: 1.2rem;
+  color: var(--color-background);
+}
+button:hover{
+  cursor: pointer;
+}

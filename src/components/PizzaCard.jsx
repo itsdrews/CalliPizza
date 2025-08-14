@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 
 const PizzaCard = ({ pizza, cardMode }) => {
   const ingredientesString = pizza.ingredientes.join(", ");
+  const [piza,setPizza] = useState(pizza);
+  const aumentarQuantidade = () =>{
+    setPizza(prevPizza => ({
+      ...prevPizza,
+      quantidade: prevPizza.quantidade +1
+    }));
+  };
+
   const renderCardContent = () => {
     switch (cardMode) {
       case "cardapio":
-        console.log("Modo Cardapio!");
         return (
           <div className="pizza-card">
             <img className="pizza-image" src="/pizza-piece.svg"></img>
@@ -43,7 +50,7 @@ const PizzaCard = ({ pizza, cardMode }) => {
         );
 
       case "comanda":
-        console.log("Modo comanda");
+
         return (
           <div className="pizza-card">
             <div className="pizza-quantity-container">
@@ -66,7 +73,10 @@ const PizzaCard = ({ pizza, cardMode }) => {
                   R$ {pizza.valor.toFixed(2)}
                 </span>
 
-                <button className="quantity-button">+</button>
+                <button 
+                className="quantity-button"
+                onClick={() => aumentarQuantidade(piza)}
+                >+</button>
                 <button className="quantity-button">-</button>
                 <button className="delete-button">
                   <img
