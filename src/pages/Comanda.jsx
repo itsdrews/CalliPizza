@@ -9,8 +9,8 @@ const Comanda = () => {
 
       mesa:1,
       endereco: null,
-      pronto,
-      entregue,
+      pronto:false,
+      entregue:false,
       pedido:[{
     id: 1,
     nome: "Margherita",

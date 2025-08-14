@@ -22,7 +22,7 @@ const AppRoutes = ({
 }) => {
   return (
 
-     <ComandaProvider>
+  
     <Routes>
       {/* Rotas Públicas */}
       <Route path="/" element={<Login />} />
@@ -54,7 +54,7 @@ const AppRoutes = ({
         <Route path="/get-pedidos" element={<Historico />} />
       </Route>
     </Routes>
-     </ComandaProvider>
+  
 
   );
 };
