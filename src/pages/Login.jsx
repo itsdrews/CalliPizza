@@ -18,15 +18,15 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (codigo === "1" && senha === "1") {
-      login({ nome: "Funcionario", codigo }, "fake-jwt-token");
+    if (codigo === "123" && senha === "123") {
+      login({ nome: "funcionario", codigo }, "fake-jwt-token");
       navigate("/cardapio");
     } else {
-      if (codigo === "987654321" && senha === "123456") {
-        login({ nome: "Administrador", codigo }, "fake-jwt-token");
+      if (codigo === "321" && senha === "321") {
+        login({ nome: "administrador", codigo }, "fake-jwt-token");
         navigate("/admin");
       } else {
-        setErro("codigo ou senha inválidos");
+        setErro("Código ou senha inválidos");
       }
     }
   };

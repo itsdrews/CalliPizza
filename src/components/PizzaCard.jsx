@@ -1,7 +1,7 @@
 import React from "react";
 
 const PizzaCard = ({ pizza, cardMode }) => {
-  const ingredientesString = pizza.ingredientes.join(", ");
+  const ingredientesString = pizza.ingredientes;
   const renderCardContent = () => {
     switch (cardMode) {
       case "cardapio":
