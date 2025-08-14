@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import "./App.css";
 import AppRoutes from "./routes/AppRoutes";
 
 function App() {
   const API_URL = "http://localhost:3001";
+
+  const [pizzas, setPizzas] = useState([]);
 
   // CREATE
   async function inserirPizza(pizzaData) {
@@ -43,24 +45,6 @@ function App() {
       return pizzas;
     } catch (error) {
       console.error("Falha ao ler pizzas:", error);
-    }
-  }
-
-  async function obterPizza(id) {
-    try {
-      const response = await fetch(`${API_URL}/pizzas/${id}`);
-
-      if (!response.ok) {
-        throw new Error(
-          `Erro ao buscar pizza com ID ${id}: ${response.statusText}`
-        );
-      }
-
-      const pizza = await response.json();
-      console.log(`Pizza encontrada (ID ${id}):`, pizza);
-      return pizza;
-    } catch (error) {
-      console.error(`Falha ao buscar pizza com ID ${id}:`, error);
     }
   }
 
@@ -110,11 +94,27 @@ function App() {
     }
   }
 
+  useEffect(() => {
+    const fetchPizzas = async () => {
+      try {
+        const data = await obterPizzas();
+        setPizzas(data);
+      } catch (e) {
+        console.error("Erro ao obter pizzas: ", e);
+      }
+    };
+
+    fetchPizzas();
+
+    return () => {};
+  }, []);
+
   return (
     <AppRoutes
+      pizzas={pizzas}
+      setPizzas={setPizzas}
       inserirPizza={inserirPizza}
       obterPizzas={obterPizzas}
-      obterPizza={obterPizza}
       editarPizza={editarPizza}
       removerPizza={removerPizza}
     />

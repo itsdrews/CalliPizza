@@ -29,15 +29,15 @@ export default function PizzaTable({ pizzas, setPizzas, removerPizza }) {
       pizza.nome,
       pizza.tipo,
       pizza.ingredientes,
-      pizza.valores.Pequena,
-      pizza.valores.Média,
-      pizza.valores.Grande,
-      pizza.valores.Família
+      pizza.valores.pequena,
+      pizza.valores.media,
+      pizza.valores.grande,
+      pizza.valores.familia
     )
   );
 
   const HandleRemoverPizza = (id) => {
-    const removePizza = async () => {
+    const removePizza = async (id) => {
       try {
         const sucesso = await removerPizza(id);
 

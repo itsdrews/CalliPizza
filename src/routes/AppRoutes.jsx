@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useParams, useNavigate } from "react-router-dom";
 import ProtectedRoutes from "./ProtectedRoutes";
 
 // Páginas
@@ -14,15 +14,14 @@ import NotFound from "../pages/NotFound";
 import Historico from "../pages/Historico";
 
 const AppRoutes = ({
+  pizzas,
+  setPizzas,
   inserirPizza,
   obterPizzas,
-  obterPizza,
   editarPizza,
   removerPizza,
 }) => {
   return (
-
-     <ComandaProvider>
     <Routes>
       {/* Rotas Públicas */}
       <Route path="/" element={<Login />} />
@@ -39,24 +38,54 @@ const AppRoutes = ({
         <Route
           path="/admin"
           element={
-            <Admin obterPizzas={obterPizzas} removerPizza={removerPizza} />
+            <Admin
+              pizzas={pizzas}
+              setPizzas={setPizzas}
+              removerPizza={removerPizza}
+            />
           }
         />
         <Route
           path="/add-sabor"
           element={
             <CadastrarPizza
+              pizza={{
+                id: 0,
+                nome: "",
+                tipo: "",
+                ingredientes: "",
+                valores: {
+                  Pequena: 0,
+                  Média: 0,
+                  Grande: 0,
+                  Família: 0,
+                },
+              }}
               cadastrarPizza={inserirPizza}
-              editarPizza={editarPizza}
             />
           }
+        />
+        <Route
+          path="/edit-sabor/:idpizza"
+          element={<EditHandler pizzas={pizzas} editarPizza={editarPizza} />}
         />
         <Route path="/get-pedidos" element={<Historico />} />
       </Route>
     </Routes>
-     </ComandaProvider>
-
   );
 };
 
 export default AppRoutes;
+
+const EditHandler = ({ pizzas, editarPizza }) => {
+  const { idPizza } = useParams();
+  const navigate = useNavigate();
+  const pizza = pizzas.find((p) => p.id === idPizza);
+
+  if (!pizza) {
+    navigate("/");
+    return null;
+  }
+
+  return <CadastrarPizza pizza={pizza} editarPizza={editarPizza} />;
+};

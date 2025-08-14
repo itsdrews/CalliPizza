@@ -1,17 +1,56 @@
 {
   "pizzas": [
     {
-      "id": "2",
+      "id": 1,
+      "nome": "Margherita",
+      "tipo": "Tradicional",
+      "ingredientes": "Molho de tomate, Mussarela premium, Manjericão fresco e Azeite de oliva",
+      "valores": {
+        "pequena": 35.9,
+        "media": 45.9,
+        "grande": 55.9,
+        "familia": 65.9
+      }
+    },
+    {
+      "id": 2,
       "nome": "Calabresa",
       "tipo": "Tradicional",
       "ingredientes": "Molho de tomate, Mussarela, Calabresa premium e Cebola caramelizada",
       "valores": {
-        "Pequena": 38.9,
-        "Média": 48.9,
-        "Grande": 58.9,
-        "Família": 68.9
+        "pequena": 38.9,
+        "media": 48.9,
+        "grande": 58.9,
+        "familia": 68.9
       }
+    },
+    {
+      "id": 3,
+      "nome": "Quatro Queijos",
+      "tipo": "Especial",
+      "ingredientes": "Molho de tomate, Mussarela, Provolone, Gorgonzola e Parmesão",
+      "valores": {
+        "pequena": 42.9,
+        "media": 52.9,
+        "grande": 62.9,
+        "familia": 72.9
+      }
+    },
+    {
+      "id": "ce26",
+      "valores": {
+        "familia": 3,
+        "grande": 2,
+        "media": 2,
+        "pequena": 1
+      },
+      "ingredientes": "Queijo mussarela, orégano, tomate, azeitona e borda crocante",
+      "tipo": "Tradicional",
+      "nome": "Mussarela"
     }
   ],
-  "comandas": []
+  "comanda": [],
+  "funcionario": [],
+  "entrega": [],
+  "servico": []
 }
