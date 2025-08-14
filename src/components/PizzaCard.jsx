@@ -1,15 +1,7 @@
 import React, { useState } from "react";
 
 const PizzaCard = ({ pizza, cardMode }) => {
-  const ingredientesString = pizza.ingredientes.join(", ");
-  const [piza,setPizza] = useState(pizza);
-  const aumentarQuantidade = () =>{
-    setPizza(prevPizza => ({
-      ...prevPizza,
-      quantidade: prevPizza.quantidade +1
-    }));
-  };
-
+  const ingredientesString = pizza.ingredientes;
   const renderCardContent = () => {
     switch (cardMode) {
       case "cardapio":

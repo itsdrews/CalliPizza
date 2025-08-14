@@ -1,0 +1,17 @@
+{
+  "pizzas": [
+    {
+      "id": "2",
+      "nome": "Calabresa",
+      "tipo": "Tradicional",
+      "ingredientes": "Molho de tomate, Mussarela, Calabresa premium e Cebola caramelizada",
+      "valores": {
+        "Pequena": 38.9,
+        "Média": 48.9,
+        "Grande": 58.9,
+        "Família": 68.9
+      }
+    }
+  ],
+  "comandas": []
+}
