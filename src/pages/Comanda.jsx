@@ -2,15 +2,14 @@ import React from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import PizzaCard from '../components/PizzaCard'
-import {useState,useEffect,useMemo,useRef} from 'react'
+import {useState,useCallback} from 'react'
 const Comanda = () => {
     
-  const comandas = [{
-
+  const [comanda,setComanda] =useState( {
       mesa:1,
       endereco: null,
       pronto:false,
-      entregue:false,
+      entregue:false, 
       pedido:[{
     id: 1,
     nome: "Margherita",
@@ -40,95 +39,81 @@ const Comanda = () => {
   }
   
 ]
-},
-{
+  })
+  const pedidos = comanda.pedido;
+ // Função otimizada com useCallback para evitar recriações desnecessárias
+  const deletarPizza =  useCallback((id, novaQuantidade) => {
+    setComanda(prev => {
+      // Verifica se a quantidade realmente mudou
+      const item = prev.pedido.find(p => p.id === id);
+      novaQuantidade = 0;
+      // Atualiza apenas se necessário
+      return {
+        ...prev,
+        pedido: prev.pedido.map(item => 
+          item.id === id ? { ...item, quantidade: novaQuantidade } : item
+        )
+      };
+    });
+  }, []);
 
-      mesa:2,
-      endereco: null,
-      pedido:[
-    {
-    id: 1,
-    nome: "Calabresa",
-    tamanho: "Média",
-    descricao: "A clássica pizza italiana com ingredientes frescos",
-    ingredientes: ["Molho de tomate", "Mussarela premium", "Manjericão fresco", "Azeite de oliva"],
-    valor: 50,
-    quantidade: 3
-  },
-    
-  
-]
-}
-]
+  // Handler seguro para aumentar
+  const aumentarQuantidade = useCallback((id) => {
+    setComanda(prev => {
+      const item = prev.pedido.find(p => p.id === id);
+      if (!item) return prev;
+
+      const novaQuantidade = item.quantidade + 1;
+      return {
+        ...prev,
+        pedido: prev.pedido.map(p => 
+          p.id === id ? { ...p, quantidade: novaQuantidade } : p
+        )
+      };
+    });
+  }, []);
+
+  // Handler seguro para diminuir
+  const diminuirQuantidade = useCallback((id) => {
+    setComanda(prev => {
+      const item = prev.pedido.find(p => p.id === id);
+      if (!item || item.quantidade <= 1) return prev;
+
+      const novaQuantidade = item.quantidade - 1;
+      return {
+        ...prev,
+        pedido: prev.pedido.map(p => 
+          p.id === id ? { ...p, quantidade: novaQuantidade } : p
+        )
+      };
+    });
+  }, []);
 
 
- const [inputValue, setInputValue] = useState('');
-  const [numeroBusca, setNumeroBusca] = useState('');
-  const [mesaSelecionada, setMesaSelecionada] = useState(null);
-  const prevMesaRef = useRef();
 
-  // Memoriza comandas
-  const comandasMemoizadas = useMemo(() => comandas, []);
-
-  // Debounce no input de busca
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setNumeroBusca(inputValue);
-    }, 300);
-
-    return () => clearTimeout(handler);
-  }, [inputValue]);
-
-  // Efeito de busca corrigido
-  useEffect(() => {
-    if (!numeroBusca) {
-      if (mesaSelecionada !== null) {
-        setMesaSelecionada(null);
-      }
-      return;
-    }
-
-    const numero = parseInt(numeroBusca);
-    if (isNaN(numero)) return;
-
-    const mesaEncontrada = comandasMemoizadas.find(c => c.mesa === numero);
-    
-    // Só atualiza se o resultado for diferente do anterior
-    if (JSON.stringify(mesaEncontrada) !== JSON.stringify(prevMesaRef.current)) {
-      setMesaSelecionada(mesaEncontrada || null);
-      prevMesaRef.current = mesaEncontrada;
-    }
-  }, [numeroBusca, comandasMemoizadas, mesaSelecionada]);
-
-  const handleBuscaChange = (e) => {
-    if (e.target.value === '' || /^\d+$/.test(e.target.value)) {
-      setInputValue(e.target.value);
-    }
-  };
-
-  const pedidos = mesaSelecionada ? mesaSelecionada.pedido : [];
 
   const calcularTotal = (pedidos) =>{
 
     const total = pedidos.reduce(
       (total,item) => total + (item.valor * item.quantidade),0
     );
-  
+    
   return total
 
   }
 
 
 
-  
 
   return (
     <>
     <Header></Header>
     <div className="cardapio-container">
       <div className="pizzas-grid">
-        {pedidos.length!=0 ? pedidos.map((pizza) => (
-          <PizzaCard key={pizza.id} pizza={pizza} cardMode={"comanda"}/>
+        {pedidos.length!=0 ?pedidos.map((pizza) => ( 
+          pizza.quantidade !==0 ? 
+          <PizzaCard key={pizza.id} pizza={pizza} deletePizza = {deletarPizza} onIncrease = {aumentarQuantidade} onDecrease ={diminuirQuantidade} cardMode={"comanda"}/>
+          : console.log("aq")
         )): <h1 className='comanda-not-found'>
           Comanda não encontrada!
         </h1>}
@@ -140,10 +125,8 @@ const Comanda = () => {
           <div className="busca-mesa">
 
             <input 
-            className='mesa-comanda'
+              className='mesa-comanda'
               type ="text"
-              value={inputValue}
-              onChange={handleBuscaChange}
               placeholder='mesa'
               inputMode='numeric'
             />
@@ -160,7 +143,7 @@ const Comanda = () => {
       <div className="total-submit">
 
       <p className='total'>Total: R$ {calcularTotal(pedidos)}</p>
-      <button>ENVIAR PARA A COZINHA</button>
+      <button type="submit">ENVIAR PARA A COZINHA</button>
       </div>
     </div>
     <Footer></Footer>

@@ -1,7 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const PizzaCard = ({ pizza, cardMode }) => {
+
+const PizzaCard = ({ pizza, cardMode,onIncrease,onDecrease,deletePizza }) => {
   const ingredientesString = pizza.ingredientes;
+   const handleIncrease = () => {
+    onIncrease(pizza.id);
+  };
+
+  const handleDecrease = () => {
+    onDecrease(pizza.id);
+  };
+  const handleDelete = () => {
+    deletePizza(pizza.id);
+  }
   const renderCardContent = () => {
     switch (cardMode) {
       case "cardapio":
@@ -42,7 +53,6 @@ const PizzaCard = ({ pizza, cardMode }) => {
         );
 
       case "comanda":
-
         return (
           <div className="pizza-card">
             <div className="pizza-quantity-container">
@@ -67,10 +77,14 @@ const PizzaCard = ({ pizza, cardMode }) => {
 
                 <button 
                 className="quantity-button"
-                onClick={() => aumentarQuantidade(piza)}
+                onClick = {handleIncrease}
                 >+</button>
-                <button className="quantity-button">-</button>
-                <button className="delete-button">
+                <button
+                 className="quantity-button"
+                 onClick={handleDecrease}
+                 >-</button>
+                <button className="delete-button"
+                onClick={handleDelete}>
                   <img
                     className="delete-button-image"
                     src="/thrash-can.svg"
