@@ -3,6 +3,7 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import PizzaCard from '../components/PizzaCard'
 import {useState,useCallback} from 'react'
+import { useNavigate } from 'react-router-dom'
 const Comanda = () => {
     
   const [comanda,setComanda] =useState( {
@@ -56,6 +57,14 @@ const Comanda = () => {
       };
     });
   }, []);
+
+    const removerItem = (id) => {
+    setComanda(prev => ({
+      ...prev,
+      pedido: prev.pedido.filter(item => item.id !== id)
+    }));
+  };
+
 
   // Handler seguro para aumentar
   const aumentarQuantidade = useCallback((id) => {
@@ -111,22 +120,22 @@ const Comanda = () => {
     <div className="cardapio-container">
       <div className="pizzas-grid">
         {pedidos.length!=0 ?pedidos.map((pizza) => ( 
-          pizza.quantidade !==0 ? 
-          <PizzaCard key={pizza.id} pizza={pizza} deletePizza = {deletarPizza} onIncrease = {aumentarQuantidade} onDecrease ={diminuirQuantidade} cardMode={"comanda"}/>
-          : console.log("aq")
+         
+          <PizzaCard key={pizza.id} pizza={pizza} deletePizza = {removerItem} onIncrease = {aumentarQuantidade} onDecrease ={diminuirQuantidade} cardMode={"comanda"}/>
+      
         )): <h1 className='comanda-not-found'>
-          Comanda não encontrada!
+          Comanda Vazia!
         </h1>}
       </div>
       <div className="delivery-type-container">
         <div className="table">
           <h2>Mesa</h2>
-          <p>Número da mesa</p>
+          <p>Nº da mesa</p>
           <div className="busca-mesa">
 
             <input 
               className='mesa-comanda'
-              type ="text"
+              type ="number"
               placeholder='mesa'
               inputMode='numeric'
             />
