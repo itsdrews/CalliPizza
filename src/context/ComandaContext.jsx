@@ -1,10 +1,13 @@
 import { createContext } from "react";
 import { useContext,useState,useEffect } from "react";
 import { toast } from "react-toastify"; 
+import { useCozinha } from "./CozinhaContext";
+
 const LOCAL_STORAGE_KEY = 'comanda';
 const PEDIDOS_STORAGE_KEY = 'pedidos';
 export const ComandaContext = createContext();
 export const ComandaProvider = ({children}) =>{
+const {cozinha,adicionarComanda} = useCozinha();
 const [comanda,setComanda]= useState(() => {
   const saved  = localStorage.getItem(LOCAL_STORAGE_KEY);
   return saved? JSON.parse(saved): {
@@ -18,9 +21,7 @@ const [comanda,setComanda]= useState(() => {
     valorTotal: 0
   }
 
-}
-
-)
+})
 
 const gerarIdIncremental = () => {
   const CHAVE_CONTADOR = 'ultimoIdPedido';
@@ -40,8 +41,9 @@ const limparPedidos = () =>{
 
 
 const confirmarMandarParaCozinha = (pedidos,mesa,endereco,valor) => {
-  pedidos.length >0   ?
-  toast.warn(
+  pedidos.length >0?
+  (mesa !=='' || endereco !== '')?
+  (toast.warn(
     <div>
       <p>Tem certeza que deseja mandar para cozinha?</p>
       <div style={{ marginTop: '10px', display: 'flex', gap: '10px' }}>
@@ -83,10 +85,10 @@ const confirmarMandarParaCozinha = (pedidos,mesa,endereco,valor) => {
       draggable: false,
       closeOnClick: false,
     }
-  ): toast.error("Não há itens na comanda!");
+  )):toast.error("Preencha Endereço ou Mesa!"): toast.error("Não há itens na comanda!");
 };
 const mandarParaCozinha = (pedidos,mesa,endereco,valor) => {
-  const novoId = gerarIdIncremental();
+  const novoId = gerarIdIncremental();  
   const novaComanda = 
     {
     id:novoId,
@@ -100,6 +102,7 @@ const mandarParaCozinha = (pedidos,mesa,endereco,valor) => {
   }   
   
   setComanda(novaComanda) 
+  adicionarComanda(novaComanda)
   limparPedidos();
   setTimeout(() => {
   location.reload(); 

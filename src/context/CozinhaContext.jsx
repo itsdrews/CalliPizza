@@ -4,23 +4,17 @@ export const CozinhaContext = createContext();
 export const CozinhaProvider = ({ children }) => {
   const [cozinha,setCozinha] = useState(() => {
     // Recupera do localStorage se existir
-    const salvo = localStorage.getItem('comandasCozinha');
+    const salvo = localStorage.getItem('cozinha');
     return salvo ? JSON.parse(salvo) : [];
   });
 
   // Persiste no localStorage quando muda
   useEffect(() => {
-    localStorage.setItem('comandasCozinha', JSON.stringify(cozinha));
+    localStorage.setItem('cozinha', JSON.stringify(cozinha));
   }, [cozinha]);
 
   const adicionarComanda = (novaComanda) => {
-    setCozinha(prev => [
-      ...prev,
-      {
-        ...novaComanda,
-        status: 'pendente'
-      }
-    ]);
+    setCozinha(prev => [...prev,novaComanda]);
   };
 
 

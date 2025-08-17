@@ -2,8 +2,9 @@ import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "./Cozinha.css";
+import { useCozinha } from "../context/CozinhaContext";
 const Cozinha = () => {
-  console.log(localStorage.getItem('cozinha'));
+  const {cozinha,atualizarStatusComanda} = useCozinha();
   return (
     <div>
       <Header />

@@ -14,6 +14,7 @@ import NotFound from "../pages/NotFound";
 import Historico from "../pages/Historico";
 import { PedidosProvider } from "../context/PedidosContext";
 import { ComandaProvider } from "../context/ComandaContext";
+import { CozinhaProvider } from "../context/CozinhaContext";
 
 const AppRoutes = ({
   inserirPizza,
@@ -25,9 +26,9 @@ const AppRoutes = ({
   return (
 
   
-      <PedidosProvider>
+    <CozinhaProvider>
         <ComandaProvider>
-
+            <PedidosProvider>
 
     <Routes>
       {/* Rotas Públicas */}
@@ -61,9 +62,11 @@ const AppRoutes = ({
         <Route path="/get-pedidos" element={<Historico />} />
       </Route>
     </Routes>
-        </ComandaProvider>
-  
+
             </PedidosProvider>
+        </ComandaProvider>
+          </CozinhaProvider>
+  
 
   );
 };
