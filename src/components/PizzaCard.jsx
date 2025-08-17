@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 
 
-const PizzaCard = ({ pizza, cardMode,onIncrease,onDecrease,deletePizza }) => {
+const PizzaCard = ({ pizza, cardMode,onIncrease,onDecrease,deletePizza,adicionarPedido }) => {
   const ingredientesString = pizza.ingredientes;
    const handleIncrease = () => {
-    onIncrease(pizza.id);
+    onIncrease(pizza.id,pizza.tamanho);
   };
 
   const handleDecrease = () => {
-    onDecrease(pizza.id);
+    onDecrease(pizza.id,pizza.tamanho);
   };
   const handleDelete = () => {
-    deletePizza(pizza.id);
+    deletePizza(pizza.id,pizza.tamanho);
   }
   const renderCardContent = () => {
     switch (cardMode) {
@@ -37,6 +37,7 @@ const PizzaCard = ({ pizza, cardMode,onIncrease,onDecrease,deletePizza }) => {
                         <div className="cart-image-container">
                           <span>
                             <img
+                              onClick={() =>adicionarPedido(pizza.id,pizza.nome,tamanho,valor)}
                               src="/carrinho.svg"
                               alt="cart"
                               className="cart-image"

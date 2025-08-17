@@ -12,6 +12,7 @@ import Entrega from "../pages/Entrega";
 import CadastrarPizza from "../pages/CadastrarPizza";
 import NotFound from "../pages/NotFound";
 import Historico from "../pages/Historico";
+import { PedidosProvider } from "../context/PedidosContext";
 
 const AppRoutes = ({
   inserirPizza,
@@ -23,16 +24,18 @@ const AppRoutes = ({
   return (
 
   
+      <PedidosProvider>
     <Routes>
       {/* Rotas Públicas */}
       <Route path="/" element={<Login />} />
       <Route path="*" element={<NotFound />} />
       {/* Rotas Protegidas */}
       <Route element={<ProtectedRoutes />}>
+
         <Route
           path="/cardapio"
           element={<Cardapio obterPizzas={obterPizzas} />}
-        />
+          />
         <Route path="/comanda" element={<Comanda />} />
         <Route path="/cozinha" element={<Cozinha />} />
         <Route path="/entrega" element={<Entrega />} />
@@ -41,20 +44,21 @@ const AppRoutes = ({
           element={
             <Admin obterPizzas={obterPizzas} removerPizza={removerPizza} />
           }
-        />
+          />
         <Route
           path="/add-sabor"
           element={
             <CadastrarPizza
               cadastrarPizza={inserirPizza}
               editarPizza={editarPizza}
+              />
+            }
             />
-          }
-        />
         <Route path="/get-pedidos" element={<Historico />} />
       </Route>
     </Routes>
   
+            </PedidosProvider>
 
   );
 };

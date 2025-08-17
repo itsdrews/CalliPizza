@@ -2,6 +2,7 @@ import React from "react";
 
 import "./App.css";
 import AppRoutes from "./routes/AppRoutes";
+import { PedidosProvider } from "./context/PedidosContext";
 
 function App() {
   const API_URL = "http://localhost:3001";
@@ -117,7 +118,8 @@ function App() {
       obterPizza={obterPizza}
       editarPizza={editarPizza}
       removerPizza={removerPizza}
-    />
+      />
+     
   );
 }
 

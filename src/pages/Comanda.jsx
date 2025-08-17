@@ -2,115 +2,103 @@ import React from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import PizzaCard from '../components/PizzaCard'
-import {useState,useCallback} from 'react'
+import {useState,useCallback,useEffect,useMemo} from 'react'
 import { useNavigate } from 'react-router-dom'
+import { usePedidos } from '../context/PedidosContext'
 const Comanda = () => {
-    
-  const [comanda,setComanda] =useState( {
+  const gerarUUID = () => crypto.randomUUID();
+  const [mesaInput, setMesaInput] = useState('');
+  const [enderecoInput, setEnderecoInput] = useState('');
+  
+  // Calcula os estados desativados diretamente baseado nos valores
+  const mesaInputDesativado = enderecoInput !== '';
+  const enderecoInputDesativado = mesaInput !== '';
+
+  // Limpa o campo quando for desativado
+  useEffect(() => {
+    if (mesaInputDesativado && mesaInput !== '') {
+      setMesaInput('');
+    }
+  }, [mesaInputDesativado]);
+
+  useEffect(() => {
+    if (enderecoInputDesativado && enderecoInput !== '') {
+      setEnderecoInput('');
+    }
+  }, [enderecoInputDesativado]);
+  
+  const {pedidos} = usePedidos();
+  const [comanda,setComanda] =useState( {   
       mesa:1,
       endereco: null,
       pronto:false,
       entregue:false, 
-      pedido:[{
-    id: 1,
-    nome: "Margherita",
-    tamanho: "Grande",
-    descricao: "A clássica pizza italiana com ingredientes frescos",
-    ingredientes: ["Molho de tomate", "Mussarela premium", "Manjericão fresco", "Azeite de oliva"],
-    valor: 43,
-    quantidade: 1
-  },
-    {
-    id: 2,
-    nome: "Calabresa",
-    tamanho: "Média",
-    descricao: "A clássica pizza italiana com ingredientes frescos",
-    ingredientes: ["Molho de tomate", "Mussarela premium", "Manjericão fresco", "Azeite de oliva"],
-    valor: 50,
-    quantidade: 3
-  },
-    {
-    id: 3,
-    nome: "Frango com Catupiry",
-    tamanho: "Família",
-    descricao: "A clássica pizza italiana com ingredientes frescos",
-    ingredientes: ["Molho de tomate", "Mussarela premium", "Manjericão fresco", "Azeite de oliva"],
-    valor: 65,
-    quantidade: 4
-  }
-  
-]
+      pedido: pedidos
   })
-  const pedidos = comanda.pedido;
- // Função otimizada com useCallback para evitar recriações desnecessárias
-  const deletarPizza =  useCallback((id, novaQuantidade) => {
-    setComanda(prev => {
-      // Verifica se a quantidade realmente mudou
-      const item = prev.pedido.find(p => p.id === id);
-      novaQuantidade = 0;
-      // Atualiza apenas se necessário
-      return {
-        ...prev,
-        pedido: prev.pedido.map(item => 
-          item.id === id ? { ...item, quantidade: novaQuantidade } : item
-        )
-      };
-    });
-  }, []);
+  
 
-    const removerItem = (id) => {
+
+
+    const removerItem = (id,tamanho) => {
     setComanda(prev => ({
       ...prev,
-      pedido: prev.pedido.filter(item => item.id !== id)
+      pedido: prev.pedido.filter(item => !(item.id === id && item.tamanho ===tamanho))
     }));
   };
 
-
-  // Handler seguro para aumentar
-  const aumentarQuantidade = useCallback((id) => {
+  
+  const aumentarQuantidade = useCallback((id,tamanho) => {
+    console.log(id,tamanho)
     setComanda(prev => {
-      const item = prev.pedido.find(p => p.id === id);
-      if (!item) return prev;
+      const item = prev.pedido.find(p => p.id === id && p.tamanho ===tamanho);
 
+      if (!item) return prev;
       const novaQuantidade = item.quantidade + 1;
       return {
         ...prev,
         pedido: prev.pedido.map(p => 
-          p.id === id ? { ...p, quantidade: novaQuantidade } : p
+          p.id === id && p.tamanho ===tamanho ? { ...p, quantidade: novaQuantidade } : p
         )
       };
     });
   }, []);
 
   // Handler seguro para diminuir
-  const diminuirQuantidade = useCallback((id) => {
+  const diminuirQuantidade = useCallback((id,tamanho) => {
     setComanda(prev => {
-      const item = prev.pedido.find(p => p.id === id);
+      const item = prev.pedido.find(p => p.id === id && p.tamanho === tamanho);
       if (!item || item.quantidade <= 1) return prev;
 
       const novaQuantidade = item.quantidade - 1;
       return {
         ...prev,
         pedido: prev.pedido.map(p => 
-          p.id === id ? { ...p, quantidade: novaQuantidade } : p
+          p.id === id  && p.tamanho===tamanho? { ...p, quantidade: novaQuantidade } : p
         )
       };
     });
   }, []);
 
+  const pedidosComanda = comanda.pedido;
 
+ 
+  const calcularTotal = (pedidosComanda) =>{
 
-
-  const calcularTotal = (pedidos) =>{
-
-    const total = pedidos.reduce(
+    const total = pedidosComanda.reduce(
       (total,item) => total + (item.valor * item.quantidade),0
     );
     
   return total
 
   }
+   const [total,setTotal] = useState(
+    calcularTotal(pedidosComanda) 
+  )
+  useEffect(()=> {
+    setTotal(calcularTotal(pedidosComanda))
+  },[pedidosComanda])
 
+ 
 
 
 
@@ -119,9 +107,9 @@ const Comanda = () => {
     <Header></Header>
     <div className="cardapio-container">
       <div className="pizzas-grid">
-        {pedidos.length!=0 ?pedidos.map((pizza) => ( 
+        {pedidosComanda.length!=0 ?pedidosComanda.map((pizza) => ( 
          
-          <PizzaCard key={pizza.id} pizza={pizza} deletePizza = {removerItem} onIncrease = {aumentarQuantidade} onDecrease ={diminuirQuantidade} cardMode={"comanda"}/>
+          <PizzaCard  key = {gerarUUID()} pizza={pizza} deletePizza = {removerItem} onIncrease = {aumentarQuantidade} onDecrease ={diminuirQuantidade} cardMode={"comanda"}/>
       
         )): <h1 className='comanda-not-found'>
           Comanda Vazia!
@@ -133,7 +121,9 @@ const Comanda = () => {
           <p>Nº da mesa</p>
           <div className="busca-mesa">
 
-            <input 
+            <input
+              value={mesaInput}
+              onChange={(e) => setMesaInput(e.target.value)}
               className='mesa-comanda'
               type ="number"
               placeholder='mesa'
@@ -145,14 +135,19 @@ const Comanda = () => {
         <div className="delivery">
           <h2>Entrega</h2>
           <p>Endereço</p>
-          <input className='address-input-container' type='text' placeholder='Digite o endereço de entrega'/>
+          <input
+          value={enderecoInput}
+          onChange={(e) => setEnderecoInput(e.target.value)}
+          className='address-input-container' 
+          type='text' 
+          placeholder='Digite o endereço de entrega'/>
          
         </div>
       </div>
       <div className="total-submit">
 
-      <p className='total'>Total: R$ {calcularTotal(pedidos)}</p>
-      <button type="submit">ENVIAR PARA A COZINHA</button>
+      <p className='total'>Total: R$ {total}</p>
+      <button type="submit" >ENVIAR PARA A COZINHA</button>
       </div>
     </div>
     <Footer></Footer>

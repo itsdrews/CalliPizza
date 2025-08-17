@@ -2,9 +2,13 @@ import React, { useState, useEffect } from "react";
 import PizzaCard from "../components/PizzaCard";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-
+import { usePedidos } from "../context/PedidosContext";
 const Cardapio = ({ obterPizzas }) => {
   const [pizzas, setPizzas] = useState([]);
+  const {pedidos,adicionarPedido} = usePedidos();
+  const [novaComanda,setNovaComanda] = useState({
+    pedidos : []
+  })
 
   useEffect(() => {
     const fetchPizzas = async () => {
@@ -27,7 +31,7 @@ const Cardapio = ({ obterPizzas }) => {
       <div className="cardapio-container">
         <div className="pizzas-grid">
           {pizzas.map((pizza) => (
-            <PizzaCard key={pizza.id} pizza={pizza} cardMode={"cardapio"} />
+            <PizzaCard key={pizza.id} adicionarPedido = {adicionarPedido} pizza={pizza} cardMode={"cardapio"} />
           ))}
         </div>
       </div>
