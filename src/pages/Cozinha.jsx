@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "./Cozinha.css";
 const Cozinha = () => {
-
+  console.log(localStorage.getItem('cozinha'));
   return (
     <div>
       <Header />

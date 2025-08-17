@@ -3,12 +3,11 @@ import PizzaCard from "../components/PizzaCard";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { usePedidos } from "../context/PedidosContext";
+import { useComanda } from "../context/ComandaContext";
 const Cardapio = ({ obterPizzas }) => {
   const [pizzas, setPizzas] = useState([]);
   const {pedidos,adicionarPedido} = usePedidos();
-  const [novaComanda,setNovaComanda] = useState({
-    pedidos : []
-  })
+  const {comanda,setComanda} = useComanda();
 
   useEffect(() => {
     const fetchPizzas = async () => {

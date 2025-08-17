@@ -1,20 +1,19 @@
-// contexts/PedidosContext.jsx
+
 import React, { createContext, useState, useContext } from 'react';
 import { useEffect } from 'react';
 const PedidosContext = createContext();
 const LOCAL_STORAGE_KEY = 'pedidos';
+import { toast } from 'react-toastify';
 export const PedidosProvider = ({ children }) => {
     const [pedidos, setPedidos] = useState(() => {
     const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
     return saved ? JSON.parse(saved) : [];
   });
 
-
-  // Atualiza o localStorage sempre que os pedidos mudarem
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(pedidos));
   }, [pedidos]);
-  // TODO: USAR CONTEXTO DE PEDIDOS PARA ADICIONAR AO VETOR PEDIDOS.
+
   const adicionarPedido = (novoPedidoId,novoPedidoNome,novoPedidoTamanho,novoPedidoValor) => {
     const novoPedido = {
       id:novoPedidoId,
@@ -31,9 +30,11 @@ export const PedidosProvider = ({ children }) => {
 
   if (!pedidoDuplicado) {
     setPedidos([...pedidos, novoPedido]);
-    console.log("Pedido adicionado!");
+    toast.success(`${novoPedidoNome} (${novoPedidoTamanho}) adicionado!`, {
+      icon: '🍽️',
+    });
   } else {
-    console.log("Já existe um pedido com este ID e tamanho.");
+    toast.warn(`${novoPedidoNome} (${novoPedidoTamanho}) Já existe na comanda!`)
   }
    
     
@@ -42,6 +43,7 @@ export const PedidosProvider = ({ children }) => {
     <PedidosContext.Provider
       value={{
         pedidos,
+        setPedidos,
         adicionarPedido
       }}
     >
@@ -50,7 +52,7 @@ export const PedidosProvider = ({ children }) => {
   );
 };
 
-// Hook personalizado para usar o contexto
+
 export const usePedidos = () => {
   const context = useContext(PedidosContext);
   if (!context) {

@@ -5,7 +5,10 @@ import PizzaCard from '../components/PizzaCard'
 import {useState,useCallback,useEffect,useMemo} from 'react'
 import { useNavigate } from 'react-router-dom'
 import { usePedidos } from '../context/PedidosContext'
+import { toast } from 'react-toastify'
+import { useComanda } from '../context/ComandaContext'
 const Comanda = () => {
+  const PEDIDOS_LOCAL_STORAGE_KEY = 'pedidos';
   const gerarUUID = () => crypto.randomUUID();
   const [mesaInput, setMesaInput] = useState('');
   const [enderecoInput, setEnderecoInput] = useState('');
@@ -27,61 +30,48 @@ const Comanda = () => {
     }
   }, [enderecoInputDesativado]);
   
-  const {pedidos} = usePedidos();
-  const [comanda,setComanda] =useState( {   
-      mesa:1,
-      endereco: null,
-      pronto:false,
-      entregue:false, 
-      pedido: pedidos
-  })
-  
-
+  const {pedidos,setPedidos} = usePedidos();
+  const {comanda,setComanda,confirmarMandarParaCozinha} = useComanda()
 
 
     const removerItem = (id,tamanho) => {
-    setComanda(prev => ({
-      ...prev,
-      pedido: prev.pedido.filter(item => !(item.id === id && item.tamanho ===tamanho))
-    }));
+    toast.success(`Item removido com sucesso!` );
+    setPedidos(prev => (
+        prev.filter(item => !(item.id === id && item.tamanho ===tamanho))
+      
+    ));
   };
 
   
   const aumentarQuantidade = useCallback((id,tamanho) => {
-    console.log(id,tamanho)
-    setComanda(prev => {
-      const item = prev.pedido.find(p => p.id === id && p.tamanho ===tamanho);
-
+    setPedidos(prev => { 
+      const item = prev.find(p =>(p.id===id && p.tamanho===tamanho));
       if (!item) return prev;
       const novaQuantidade = item.quantidade + 1;
-      return {
-        ...prev,
-        pedido: prev.pedido.map(p => 
+      return prev.map(p => 
           p.id === id && p.tamanho ===tamanho ? { ...p, quantidade: novaQuantidade } : p
         )
-      };
+      ;
     });
   }, []);
 
   // Handler seguro para diminuir
   const diminuirQuantidade = useCallback((id,tamanho) => {
-    setComanda(prev => {
-      const item = prev.pedido.find(p => p.id === id && p.tamanho === tamanho);
+    setPedidos(prev => {
+      const item = prev.find(p => p.id === id && p.tamanho === tamanho);
       if (!item || item.quantidade <= 1) return prev;
 
       const novaQuantidade = item.quantidade - 1;
-      return {
-        ...prev,
-        pedido: prev.pedido.map(p => 
+      return prev.map(p => 
           p.id === id  && p.tamanho===tamanho? { ...p, quantidade: novaQuantidade } : p
         )
-      };
+      ;
     });
   }, []);
 
-  const pedidosComanda = comanda.pedido;
-
+  const pedidosComanda = pedidos;
  
+
   const calcularTotal = (pedidosComanda) =>{
 
     const total = pedidosComanda.reduce(
@@ -97,9 +87,6 @@ const Comanda = () => {
   useEffect(()=> {
     setTotal(calcularTotal(pedidosComanda))
   },[pedidosComanda])
-
- 
-
 
 
   return (
@@ -147,7 +134,10 @@ const Comanda = () => {
       <div className="total-submit">
 
       <p className='total'>Total: R$ {total}</p>
-      <button type="submit" >ENVIAR PARA A COZINHA</button>
+      <button 
+      type="submit" 
+      onClick={() => confirmarMandarParaCozinha(pedidos,mesaInput,enderecoInput,total)}
+      >ENVIAR PARA A COZINHA</button>
       </div>
     </div>
     <Footer></Footer>

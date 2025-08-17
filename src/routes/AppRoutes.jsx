@@ -13,6 +13,7 @@ import CadastrarPizza from "../pages/CadastrarPizza";
 import NotFound from "../pages/NotFound";
 import Historico from "../pages/Historico";
 import { PedidosProvider } from "../context/PedidosContext";
+import { ComandaProvider } from "../context/ComandaContext";
 
 const AppRoutes = ({
   inserirPizza,
@@ -25,6 +26,9 @@ const AppRoutes = ({
 
   
       <PedidosProvider>
+        <ComandaProvider>
+
+
     <Routes>
       {/* Rotas Públicas */}
       <Route path="/" element={<Login />} />
@@ -42,7 +46,7 @@ const AppRoutes = ({
         <Route
           path="/admin"
           element={
-            <Admin obterPizzas={obterPizzas} removerPizza={removerPizza} />
+            <Admin obterPizzas={obterPizzas} remo verPizza={removerPizza} />
           }
           />
         <Route
@@ -57,6 +61,7 @@ const AppRoutes = ({
         <Route path="/get-pedidos" element={<Historico />} />
       </Route>
     </Routes>
+        </ComandaProvider>
   
             </PedidosProvider>
 
