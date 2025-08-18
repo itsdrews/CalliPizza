@@ -1,15 +1,111 @@
 {
   "pizzas": [
     {
+      "id": "1",
+      "nome": "Margherita",
+      "tipo": "Tradicional",
+      "ingredientes": "Molho de tomate, Mussarela, Tomate, Manjericão fresco e Parmesão",
+      "valores": {
+        "Pequena": 35.5,
+        "Média": 45.5,
+        "Grande": 55.5,
+        "Família": 65.5
+      }
+    },
+    {
       "id": "2",
       "nome": "Calabresa",
       "tipo": "Tradicional",
-      "ingredientes": "Molho de tomate, Mussarela, Calabresa premium e Cebola caramelizada",
+      "ingredientes": "Molho de tomate, Mussarela, Calabresa premium e Cebola",
       "valores": {
-        "Pequena": 38.9,
-        "Média": 48.9,
+        "Família": 69.99,
         "Grande": 58.9,
-        "Família": 68.9
+        "Média": 48.9,
+        "Pequena": 38.9
+      }
+    },
+    {
+      "id": "3",
+      "nome": "Frango com Catupiry",
+      "tipo": "Tradicional",
+      "ingredientes": "Molho de tomate, Mussarela, Frango desfiado e Catupiry original",
+      "valores": {
+        "Pequena": 41.5,
+        "Média": 51.5,
+        "Grande": 61.5,
+        "Família": 71.5
+      }
+    },
+    {
+      "id": "4",
+      "nome": "Quatro Queijos",
+      "tipo": "Tradicional",
+      "ingredientes": "Molho de tomate, Mussarela, Provolone, Gorgonzola e Parmesão",
+      "valores": {
+        "Pequena": 44.9,
+        "Média": 54.9,
+        "Grande": 64.9,
+        "Família": 74.9
+      }
+    },
+    {
+      "id": "5",
+      "nome": "Portuguesa",
+      "tipo": "Especial",
+      "ingredientes": "Molho de tomate, Mussarela, Presunto, Ovos, Cebola, Pimentão e Azeitonas",
+      "valores": {
+        "Pequena": 42,
+        "Média": 52,
+        "Grande": 62,
+        "Família": 72
+      }
+    },
+    {
+      "id": "6",
+      "nome": "Pepperoni",
+      "tipo": "Especial",
+      "ingredientes": "Molho de tomate, Mussarela, Queijo provolone e Pepperoni em rodelas",
+      "valores": {
+        "Pequena": 46.5,
+        "Média": 56.5,
+        "Grande": 66.5,
+        "Família": 76.5
+      }
+    },
+    {
+      "id": "7",
+      "nome": "Vegetariana",
+      "tipo": "Vegetariana",
+      "ingredientes": "Molho de tomate, Mussarela de búfala, Abobrinha, Berinjela, Pimentão e Tomate-cereja",
+      "valores": {
+        "Pequena": 40,
+        "Média": 50,
+        "Grande": 60,
+        "Família": 70
+      }
+    },
+    {
+      "id": "8",
+      "nome": "Pizza de Chocolate",
+      "tipo": "Doce",
+      "ingredientes": "Chocolate, Granulado e Morangos frescos",
+      "valores": {
+        "Pequena": 32,
+        "Média": 42,
+        "Grande": 52,
+        "Família": 62
+      }
+    },
+    {
+      "id": "10",
+      "nome": "Pizza de Bacon",
+      "tipo": "Especial",
+      "ingredientes": "Molho de tomate, Mussarela, Bacon crocante e Queijo cheddar",
+      "valores": {
+        "Pequena": 40.5,
+        "Média": 50.5,
+        "Grande": 60.5,
+        "Família": 70.5
       }
     }
   ],

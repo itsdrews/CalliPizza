@@ -1,18 +1,24 @@
 import React, { useEffect, useState } from "react";
 
-
-const PizzaCard = ({ pizza, cardMode,onIncrease,onDecrease,deletePizza,adicionarPedido }) => {
+const PizzaCard = ({
+  pizza,
+  cardMode,
+  onIncrease,
+  onDecrease,
+  deletePizza,
+  adicionarPedido,
+}) => {
   const ingredientesString = pizza.ingredientes;
-   const handleIncrease = () => {
-    onIncrease(pizza.id,pizza.tamanho);
+  const handleIncrease = () => {
+    onIncrease(pizza.id, pizza.tamanho);
   };
 
   const handleDecrease = () => {
-    onDecrease(pizza.id,pizza.tamanho);
+    onDecrease(pizza.id, pizza.tamanho);
   };
   const handleDelete = () => {
-    deletePizza(pizza.id,pizza.tamanho);
-  }
+    deletePizza(pizza.id, pizza.tamanho);
+  };
   const renderCardContent = () => {
     switch (cardMode) {
       case "cardapio":
@@ -32,12 +38,19 @@ const PizzaCard = ({ pizza, cardMode,onIncrease,onDecrease,deletePizza,adicionar
                       {index > 0 && <div className="price-separator"></div>}
                       <div className="size-price">
                         <span className="size">{tamanho}:</span>
-                        <span className="price">R$ {valor.toFixed(2)}</span>
+                        <span className="price">R$ {valor}</span>
 
                         <div className="cart-image-container">
                           <span>
                             <img
-                              onClick={() =>adicionarPedido(pizza.id,pizza.nome,tamanho,valor)}
+                              onClick={() =>
+                                adicionarPedido(
+                                  pizza.id,
+                                  pizza.nome,
+                                  tamanho,
+                                  valor
+                                )
+                              }
                               src="/carrinho.svg"
                               alt="cart"
                               className="cart-image"
@@ -72,20 +85,15 @@ const PizzaCard = ({ pizza, cardMode,onIncrease,onDecrease,deletePizza,adicionar
             </div>
             <div className="pizza-footer-comanda">
               <div className="price-item-comanda">
-                <span className="price-comanda">
-                  R$ {pizza.valor.toFixed(2)}
-                </span>
+                <span className="price-comanda">R$ {pizza.valor}</span>
 
-                <button 
-                className="quantity-button"
-                onClick = {handleIncrease}
-                >+</button>
-                <button
-                 className="quantity-button"
-                 onClick={handleDecrease}
-                 >-</button>
-                <button className="delete-button"
-                onClick={handleDelete}>
+                <button className="quantity-button" onClick={handleIncrease}>
+                  +
+                </button>
+                <button className="quantity-button" onClick={handleDecrease}>
+                  -
+                </button>
+                <button className="delete-button" onClick={handleDelete}>
                   <img
                     className="delete-button-image"
                     src="/thrash-can.svg"

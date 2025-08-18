@@ -8,6 +8,8 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import DriveFileRenameOutlineOutlinedIcon from "@mui/icons-material/DriveFileRenameOutlineOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+import { usePizzas } from "../context/PizzaContext";
+import { Link } from "react-router-dom";
 
 function createData(
   id,
@@ -22,7 +24,9 @@ function createData(
   return { id, nome, tipo, ingredientes, preco_p, preco_m, preco_g, preco_f };
 }
 
-export default function PizzaTable({ pizzas, setPizzas, removerPizza }) {
+export default function PizzaTable() {
+  const { pizzas, setPizzas, removerPizza } = usePizzas();
+
   const rows = pizzas.map((pizza) =>
     createData(
       pizza.id,
@@ -92,17 +96,24 @@ export default function PizzaTable({ pizzas, setPizzas, removerPizza }) {
               <TableCell align="center">
                 <button
                   className="table-button alter"
-                  onClick={() => console.log("editando", row.nome)}
+                  onClick={() => {
+                    console.log(row);
+                    console.log(row.id);
+                  }}
                 >
-                  <DriveFileRenameOutlineOutlinedIcon
-                    sx={{ fontSize: "2.4rem" }}
-                  />
+                  <Link to={`/edit-sabor/${row.id}`}>
+                    <DriveFileRenameOutlineOutlinedIcon
+                      sx={{ fontSize: "2.4rem" }}
+                    />
+                  </Link>
                 </button>
               </TableCell>
               <TableCell align="center">
                 <button
                   className="table-button delete"
-                  onClick={() => HandleRemoverPizza(row.id)}
+                  onClick={() => {
+                    HandleRemoverPizza(row.id);
+                  }}
                 >
                   <DeleteOutlineOutlinedIcon sx={{ fontSize: "2.4rem" }} />
                 </button>

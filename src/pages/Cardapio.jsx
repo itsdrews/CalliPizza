@@ -2,36 +2,60 @@ import React, { useState, useEffect } from "react";
 import PizzaCard from "../components/PizzaCard";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Filter from "../components/Filter";
 import { usePedidos } from "../context/PedidosContext";
 import { useComanda } from "../context/ComandaContext";
-const Cardapio = ({ obterPizzas }) => {
-  const [pizzas, setPizzas] = useState([]);
-  const {pedidos,adicionarPedido} = usePedidos();
-  const {comanda,setComanda} = useComanda();
+import { usePizzas } from "../context/PizzaContext";
+
+const Cardapio = () => {
+  const { pizzas, setPizzas } = usePizzas();
+  const { pedidos, adicionarPedido } = usePedidos();
+  const { comanda, setComanda } = useComanda();
+
+  const [selecionada, setSelecionada] = useState(null);
+  const [pizzasSelecionadas, setPizzasSelecionadas] = useState([]);
 
   useEffect(() => {
-    const fetchPizzas = async () => {
-      try {
-        const data = await obterPizzas();
-        setPizzas(data);
-      } catch (e) {
-        console.error("Erro ao obter pizzas: ", e);
-      }
-    };
-
-    fetchPizzas();
-
-    return () => {};
-  }, [obterPizzas]);
+    if (selecionada)
+      setPizzasSelecionadas(
+        pizzas.filter((pizza) => pizza.tipo === selecionada)
+      );
+  }, [selecionada]);
 
   return (
     <>
       <Header></Header>
+      <Filter selecionada={selecionada} setSelecionada={setSelecionada} />
       <div className="cardapio-container">
         <div className="pizzas-grid">
-          {pizzas.map((pizza) => (
-            <PizzaCard key={pizza.id} adicionarPedido = {adicionarPedido} pizza={pizza} cardMode={"cardapio"} />
-          ))}
+          {selecionada ? (
+            <>
+              <h2>{`Categoria : ${selecionada}`}</h2>
+              {pizzasSelecionadas.length === 0 ? (
+                <h3>Nenhuma pizza cadastrada para esta categoria</h3>
+              ) : (
+                <>
+                  {pizzasSelecionadas.map((pizza) => (
+                    <PizzaCard
+                      key={pizza.id}
+                      adicionarPedido={adicionarPedido}
+                      pizza={pizza}
+                      cardMode={"cardapio"}
+                    />
+                  ))}
+                </>
+              )}
+            </>
+          ) : (
+            pizzas.map((pizza) => (
+              <PizzaCard
+                key={pizza.id}
+                adicionarPedido={adicionarPedido}
+                pizza={pizza}
+                cardMode={"cardapio"}
+              />
+            ))
+          )}
         </div>
       </div>
       <Footer></Footer>

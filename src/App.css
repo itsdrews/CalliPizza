@@ -208,16 +208,16 @@ footer {
   font-size: 6.4rem;
 }
 .pizza-footer-comanda {
-  margin:0 auto;
+  margin: 0 auto;
   max-width: 50%;
-  color: #FFFF;
+  color: #ffff;
 }
 .price-item-comanda {
   display: flex;
   flex-direction: row;
   font-size: 4.8rem;
   align-items: center;
-  margin: 0 auto;   
+  margin: 0 auto;
   height: 100%;
   width: 100%;
   gap: 2.4rem;
@@ -242,7 +242,6 @@ footer {
   width: 8.8rem;
   height: 8.8rem;
   margin-right: 5.2rem;
-
 }
 .delete-button:hover {
   cursor: pointer;
@@ -364,7 +363,7 @@ footer {
   color: var(--color-background);
 }
 /* TIPO DE ENTREGA (MESA OU DELIVERY) */
-.delivery-type-container{
+.delivery-type-container {
   margin: 3.2rem auto;
   height: 32rem;
   max-width: 129rem;
@@ -421,8 +420,7 @@ footer {
   align-items: center;
 }
 
-
-.mesa-comanda{
+.mesa-comanda {
   width: 8.8rem;
   height: 6.7rem;
   font-size: 2.4rem;
@@ -430,9 +428,8 @@ footer {
   border: 0.5rem solid var(--color-darker);
   border-radius: 1.2rem;
   background-color: var(--color-tertiary);
- 
 }
-.comanda-not-found{
+.comanda-not-found {
   font-size: 4.8rem;
   color: var(--color-primary);
 }
@@ -521,7 +518,7 @@ footer {
   background-color: var(--color-primary);
 }
 
-.table-button.delete:hover{
+.table-button.delete:hover {
   background-color: var(--color-secondary);
 }
 
@@ -530,12 +527,128 @@ footer {
 }
 
 .Toastify__toast {
-  border-radius: .8rem;
+  border-radius: 0.8rem;
   padding: 1.2rem 1.6rem;
-  box-shadow: 0 .4rem 1.2rem rgba(0, 0, 0, 0.15);
-  font-family: 'poppins', sans-serif;
+  box-shadow: 0 0.4rem 1.2rem rgba(0, 0, 0, 0.15);
+  font-family: "poppins", sans-serif;
   color: var(--color-darker);
   font-weight: normal;
   background-color: var(--color-background);
 }
 
+/* Cadastro Pizza */
+
+/* Estilos do formulário */
+.meu-formulario {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 3rem;
+  margin: 3rem auto;
+  max-width: 700px;
+  box-sizing: border-box;
+}
+
+.meu-formulario h1 {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  color: #d32f2f; /* Cor de tomate para o título */
+  font-weight: bold;
+  font-size: 2.4rem;
+}
+
+/* Estilos para os parágrafos e labels */
+.meu-formulario p {
+  margin-bottom: 1.5rem;
+}
+
+.meu-formulario label {
+  display: block; /* Cada label em sua própria linha */
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+/* Estilos para os inputs de texto e número */
+.meu-formulario input {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1.6rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+}
+
+.meu-formulario input:focus {
+  outline: none;
+  border-color: #d32f2f;
+  box-shadow: 0 0 0 2px rgba(211, 47, 47, 0.2);
+}
+
+/* Estilos para a mensagem de erro */
+.mensagem-erro {
+  color: #d32f2f; /* Vermelho forte */
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  display: block; /* Para que a mensagem apareça abaixo do input */
+  font-weight: 500;
+}
+
+/* Estilo para o input com erro */
+.meu-formulario input.erro {
+  border-color: #d32f2f;
+}
+
+/* Estilos para os botões */
+.botoes-formulario {
+  display: flex;
+  justify-content: flex-end; /* Alinha os botões à direita */
+  gap: 1rem; /* Espaçamento entre os botões */
+  margin-top: 2rem;
+  flex-wrap: wrap; /* Para quebra de linha em telas pequenas */
+}
+
+.botao {
+  padding: 0.8rem 1.5rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  white-space: nowrap; /* Impede que o texto do botão quebre */
+}
+
+/* Botão Cadastrar/Salvar */
+.botao.cadastrar {
+  background-color: #388e3c; /* Verde para "Cadastrar" ou "Salvar" */
+  color: #fff;
+}
+
+.botao.cadastrar:hover {
+  background-color: #2e7d32;
+  transform: translateY(-2px);
+}
+
+/* Botão Limpar */
+.botao.limpar {
+  background-color: #fbc02d; /* Amarelo para "Limpar" */
+  color: #333;
+}
+
+.botao.limpar:hover {
+  background-color: #f9a825;
+  transform: translateY(-2px);
+}
+
+/* Botão Cancelar */
+.botao.cancelar {
+  background-color: #e53935; /* Vermelho para "Cancelar" */
+  color: #fff;
+}
+
+.botao.cancelar:hover {
+  background-color: #c62828;
+  transform: translateY(-2px);
+}

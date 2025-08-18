@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { usePizzas } from "../context/PizzaContext";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
@@ -11,29 +12,30 @@ import "react-tooltip/dist/react-tooltip.css";
 // Esquema de validação com Yup
 const schema = Yup.object().shape({
   nome: Yup.string().required("Sabor é obrigatório"),
-  tipo: Yup.string()
-    .required("Tipo é obrigatório")
-    .matches(
-      /^[a-zA-Z\s]*$/,
-      "O tipo não pode conter caracteres especiais ou números."
-    ),
+  tipo: Yup.string().required("Tipo é obrigatório"), // Expressão regular removida para flexibilidade
   ingredientes: Yup.string().required("Ingredientes são obrigatórios"),
-  valor_p: Yup.number()
-    .required("O valor (P) é obrigatório")
-    .typeError("O valor (P) deve ser um número"),
-  valor_m: Yup.number()
-    .required("O valor (M) é obrigatório")
-    .typeError("O valor (M) deve ser um número"),
-  valor_g: Yup.number()
-    .required("O valor (G) é obrigatório")
-    .typeError("O valor (G) deve ser um número"),
-  valor_f: Yup.number()
-    .required("O valor (F) é obrigatório")
-    .typeError("O valor (F) deve ser um número"),
+  valores: Yup.object().shape({
+    Pequena: Yup.number()
+      .typeError("Valor (P) deve ser um número")
+      .required("O valor (P) é obrigatório"),
+    Média: Yup.number()
+      .typeError("Valor (M) deve ser um número")
+      .required("O valor (M) é obrigatório"),
+    Grande: Yup.number()
+      .typeError("Valor (G) deve ser um número")
+      .required("O valor (G) é obrigatório"),
+    Família: Yup.number()
+      .typeError("Valor (F) deve ser um número")
+      .required("O valor (F) é obrigatório"),
+  }),
 });
 
-const CadastrarPizza = ({ pizza, inserirPizza, editarPizza }) => {
+const AddPizza = ({ idpizza }) => {
   const navigate = useNavigate();
+
+  const { pizzas, inserirPizza, categorias, editarPizza } = usePizzas();
+
+  const pizza = idpizza ? pizzas.find((p) => p.id === idpizza) : null;
 
   const {
     register,
@@ -46,30 +48,49 @@ const CadastrarPizza = ({ pizza, inserirPizza, editarPizza }) => {
       nome: pizza?.nome || "",
       tipo: pizza?.tipo || "",
       ingredientes: pizza?.ingredientes || "",
-      valor_p: pizza?.valor_p || "",
-      valor_m: pizza?.valor_m || "",
-      valor_g: pizza?.valor_g || "",
-      valor_f: pizza?.valor_f || "",
+      valores: {
+        Pequena: pizza?.valores?.Pequena || "",
+        Média: pizza?.valores?.Média || "",
+        Grande: pizza?.valores?.Grande || "",
+        Família: pizza?.valores?.Família || "",
+      },
     },
   });
 
-  const onSubmit = (dados) => {
-    const pizzaComId = { ...dados, id: pizza?.id };
+  const onSubmit = async (dados) => {
+    try {
+      if (pizza?.id) {
+        await editarPizza({ ...dados, id: pizza.id });
+      } else {
+        await inserirPizza(dados);
+      }
 
-    if (pizza?.id && editarPizza) {
-      editarPizza(pizzaComId); // Corrigido de editarLivro para editarPizza
-      toast.success("Pizza atualizada com sucesso!");
-    } else if (inserirPizza) {
-      inserirPizza(pizzaComId); // Corrigido de inserirLivro para inserirPizza
-      toast.success("Pizza cadastrada com sucesso!");
+      setTimeout(() => navigate("/admin"), 1500);
+    } catch (error) {
+      console.error("Erro ao processar o formulário:", error);
     }
-
-    // Redireciona após 1.5s
-    setTimeout(() => navigate("/admin"), 1500);
   };
 
   useEffect(() => {
-    if (isSubmitSuccessful && !pizza?.id) {
+    if (pizza) {
+      reset({
+        nome: pizza.nome,
+        tipo: pizza.tipo,
+        ingredientes: pizza.ingredientes,
+        valores: {
+          Pequena: pizza.valores.Pequena,
+          Média: pizza.valores.Média,
+          Grande: pizza.valores.Grande,
+          Família: pizza.valores.Família,
+        },
+      });
+    } else if (idpizza) {
+      navigate("/admin");
+    }
+  }, [idpizza, pizzas, reset, navigate]);
+
+  useEffect(() => {
+    if (isSubmitSuccessful && !idpizza) {
       reset();
     }
   }, [isSubmitSuccessful, reset, pizza]);
@@ -109,11 +130,18 @@ const CadastrarPizza = ({ pizza, inserirPizza, editarPizza }) => {
 
         <p>
           <label htmlFor="ftipo">Tipo</label>
-          <input
+          <select
             id="ftipo"
             className={errors.tipo ? "erro" : ""}
             {...register("tipo")}
-          />
+          >
+            <option value="">Selecione...</option>
+            {categorias.map((categoria) => (
+              <option key={categoria} value={categoria}>
+                {categoria}
+              </option>
+            ))}
+          </select>
           {errors.tipo && (
             <span className="mensagem-erro">{errors.tipo.message}</span>
           )}
@@ -135,12 +163,14 @@ const CadastrarPizza = ({ pizza, inserirPizza, editarPizza }) => {
           <label htmlFor="fvalorp">Valor (Pequena)</label>
           <input
             id="fvalorp"
-            type="number"
-            className={errors.valor_p ? "erro" : ""}
-            {...register("valor_p")}
+            type="text"
+            className={errors.valores?.Pequena ? "erro" : ""}
+            {...register("valores.Pequena")}
           />
-          {errors.valor_p && (
-            <span className="mensagem-erro">{errors.valor_p.message}</span>
+          {errors.valores?.Pequena && (
+            <span className="mensagem-erro">
+              {errors.valores.Pequena.message}
+            </span>
           )}
         </p>
 
@@ -148,12 +178,14 @@ const CadastrarPizza = ({ pizza, inserirPizza, editarPizza }) => {
           <label htmlFor="fvalorm">Valor (Média)</label>
           <input
             id="fvalorm"
-            type="number"
-            className={errors.valor_m ? "erro" : ""}
-            {...register("valor_m")}
+            type="text"
+            className={errors.valores?.Média ? "erro" : ""}
+            {...register("valores.Média")}
           />
-          {errors.valor_m && (
-            <span className="mensagem-erro">{errors.valor_m.message}</span>
+          {errors.valores?.Média && (
+            <span className="mensagem-erro">
+              {errors.valores.Média.message}
+            </span>
           )}
         </p>
 
@@ -161,12 +193,14 @@ const CadastrarPizza = ({ pizza, inserirPizza, editarPizza }) => {
           <label htmlFor="fvalorg">Valor (Grande)</label>
           <input
             id="fvalorg"
-            type="number"
-            className={errors.valor_g ? "erro" : ""}
-            {...register("valor_g")}
+            type="text"
+            className={errors.valores?.Grande ? "erro" : ""}
+            {...register("valores.Grande")}
           />
-          {errors.valor_g && (
-            <span className="mensagem-erro">{errors.valor_g.message}</span>
+          {errors.valores?.Grande && (
+            <span className="mensagem-erro">
+              {errors.valores.Grande.message}
+            </span>
           )}
         </p>
 
@@ -174,12 +208,14 @@ const CadastrarPizza = ({ pizza, inserirPizza, editarPizza }) => {
           <label htmlFor="fvalorf">Valor (Família)</label>
           <input
             id="fvalorf"
-            type="number"
-            className={errors.valor_f ? "erro" : ""}
-            {...register("valor_f")}
+            type="text"
+            className={errors.valores?.Família ? "erro" : ""}
+            {...register("valores.Família")}
           />
-          {errors.valor_f && (
-            <span className="mensagem-erro">{errors.valor_f.message}</span>
+          {errors.valores?.Família && (
+            <span className="mensagem-erro">
+              {errors.valores.Família.message}
+            </span>
           )}
         </p>
 
@@ -227,4 +263,4 @@ const CadastrarPizza = ({ pizza, inserirPizza, editarPizza }) => {
   );
 };
 
-export default CadastrarPizza;
+export default AddPizza;

@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useParams } from "react-router-dom";
 import ProtectedRoutes from "./ProtectedRoutes";
 
 // Páginas
@@ -15,60 +15,41 @@ import Historico from "../pages/Historico";
 import { PedidosProvider } from "../context/PedidosContext";
 import { ComandaProvider } from "../context/ComandaContext";
 import { CozinhaProvider } from "../context/CozinhaContext";
+import { PizzaProvider } from "../context/PizzaContext";
 
-const AppRoutes = ({
-  inserirPizza,
-  obterPizzas,
-  obterPizza,
-  editarPizza,
-  removerPizza,
-}) => {
+const AppRoutes = () => {
   return (
-
-  
-    <CozinhaProvider>
+    <PizzaProvider>
+      <CozinhaProvider>
         <ComandaProvider>
-            <PedidosProvider>
-
-    <Routes>
-      {/* Rotas Públicas */}
-      <Route path="/" element={<Login />} />
-      <Route path="*" element={<NotFound />} />
-      {/* Rotas Protegidas */}
-      <Route element={<ProtectedRoutes />}>
-
-        <Route
-          path="/cardapio"
-          element={<Cardapio obterPizzas={obterPizzas} />}
-          />
-        <Route path="/comanda" element={<Comanda />} />
-        <Route path="/cozinha" element={<Cozinha />} />
-        <Route path="/entrega" element={<Entrega />} />
-        <Route
-          path="/admin"
-          element={
-            <Admin obterPizzas={obterPizzas} remo verPizza={removerPizza} />
-          }
-          />
-        <Route
-          path="/add-sabor"
-          element={
-            <CadastrarPizza
-              cadastrarPizza={inserirPizza}
-              editarPizza={editarPizza}
-              />
-            }
-            />
-        <Route path="/get-pedidos" element={<Historico />} />
-      </Route>
-    </Routes>
-
-            </PedidosProvider>
+          <PedidosProvider>
+            <Routes>
+              {/* Rotas Públicas */}
+              <Route path="/" element={<Login />} />
+              <Route path="*" element={<NotFound />} />
+              {/* Rotas Protegidas */}
+              <Route element={<ProtectedRoutes />}>
+                <Route path="/cardapio" element={<Cardapio />} />
+                <Route path="/comanda" element={<Comanda />} />
+                <Route path="/cozinha" element={<Cozinha />} />
+                <Route path="/entrega" element={<Entrega />} />
+                <Route path="/admin" element={<Admin />} />
+                <Route path="/add-sabor" element={<CadastrarPizza />} />
+                <Route path="/edit-sabor/:idpizza" element={<EditHandler />} />
+                <Route path="/get-pedidos" element={<Historico />} />
+              </Route>
+            </Routes>
+          </PedidosProvider>
         </ComandaProvider>
-          </CozinhaProvider>
-  
-
+      </CozinhaProvider>
+    </PizzaProvider>
   );
+};
+
+const EditHandler = () => {
+  const { idpizza } = useParams();
+
+  return <CadastrarPizza idpizza={idpizza} />;
 };
 
 export default AppRoutes;
