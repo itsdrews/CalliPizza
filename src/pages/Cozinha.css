@@ -10,36 +10,41 @@
 }
 
 body {
-
   height: 100vh;
   background-color: var(--color-background);
   width: 100%;
 }
 .cozinha-container{
   margin: 0 auto;
-  max-width: 12.2rem;
+  max-width: 119rem;
+
 }
-.pedidos-title{
-  color: var(--color-darker);
+.cozinha-container h2 {
   font-size: 4.8rem;
   font-weight: bold;
+  color: var(--color-darker);
 }
-.pedidos-grid-container{
+.pedido-container{
   margin: 0 auto;
-  display: grid;
-  background-color: aqua; 
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-auto-rows: 10rem; /*  Altura fixa para cada linha */
-  gap: 4.2rem;
-}
-.pedidos-grid-container button{
   width: 26.6rem;
   height: 10.4rem;
-  background-color: var(--color-primary);
-  border: none;
-  border-radius: 1.2rem;
-  color: var(--color-background);
+  
 }
-button:hover{
+.pedidos-grid{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 1.2rem;
+}
+.pedido-container button{
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: var(--color-primary);
+  border-radius:1.2rem;
+  color: var(--color-background);
+  font-family: 'poppins',sans-serif;
+  font-size: 4.8rem;
+}
+.pedido-container button:hover{
   cursor: pointer;
 }

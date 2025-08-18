@@ -88,7 +88,8 @@ const confirmarMandarParaCozinha = (pedidos,mesa,endereco,valor) => {
   )):toast.error("Preencha Endereço ou Mesa!"): toast.error("Não há itens na comanda!");
 };
 const mandarParaCozinha = (pedidos,mesa,endereco,valor) => {
-  const novoId = gerarIdIncremental();  
+  const novoId = gerarIdIncremental(); 
+  const func  = JSON.parse(localStorage.getItem('usuario')) 
   const novaComanda = 
     {
     id:novoId,
@@ -98,7 +99,7 @@ const mandarParaCozinha = (pedidos,mesa,endereco,valor) => {
     entregue:false,
     pedidos:pedidos,
     valor:valor,
-    funcionario: localStorage.getItem('usuario') ||" "
+    funcionario: func.nome ||" "
   }   
   
   setComanda(novaComanda) 
