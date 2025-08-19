@@ -10,24 +10,11 @@ import DriveFileRenameOutlineOutlinedIcon from "@mui/icons-material/DriveFileRen
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import { Link } from "react-router-dom";
 import { BorderBottom } from "@mui/icons-material";
-
-function createData(id_comanda, id_pizza, nome, tamanho, descricao) {
-  return { id, nome, tipo, ingredientes, preco_p, preco_m, preco_g, preco_f };
-}
+import { useCozinha } from "../context/CozinhaContext";
 
 export default function HistoryTable() {
-  //   const rows = pizzas.map((pizza) =>
-  //     createData(
-  //       pizza.id,
-  //       pizza.nome,
-  //       pizza.tipo,
-  //       pizza.ingredientes,
-  //       pizza.valores.pequena,
-  //       pizza.valores.media,
-  //       pizza.valores.grande,
-  //       pizza.valores.familia
-  //     )
-  //   );
+  const { cozinha } = useCozinha();
+  console.log(cozinha);
 
   return (
     <TableContainer component={Paper} className="pizza-table-container">
@@ -38,73 +25,59 @@ export default function HistoryTable() {
             <TableCell>ID</TableCell>
             <TableCell>Pedido</TableCell>
             <TableCell>Valor Total</TableCell>
-            <TableCell>Entrega</TableCell>
+            <TableCell sx={{ width: "250px" }}>Entrega</TableCell>
             <TableCell>Status</TableCell>
           </TableRow>
         </TableHead>
 
         {/* Conteúdo */}
         <TableBody>
-          <TableRow
-            sx={{
-              border: 0,
-            }}
-          >
-            <TableCell scope="row">002</TableCell>
-            <TableCell scope="row">
-              {/* Subtabela */}
-              <Table>
-                <TableBody
-                  sx={{
-                    border: 0,
-                  }}
-                >
-                  <TableRow>
-                    <TableCell>Mussarela</TableCell>
-                    <TableCell>Pequena</TableCell>
-                    <TableCell>34,99</TableCell>
-                    <TableCell>1</TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </TableCell>
-            <TableCell scope="row">34,99</TableCell>
-            <TableCell scope="row">Darcy Vargas, 1500, Adrianópolis</TableCell>
-            <TableCell scope="row">Em andamento</TableCell>
-          </TableRow>
-          <TableRow
-            sx={{
-              "&:last-child td, &:last-child th": { border: 0 },
-            }}
-          >
-            <TableCell scope="row">001</TableCell>
-            <TableCell scope="row">
-              {/* Subtabela */}
-              <Table>
-                <TableBody
-                  sx={{
-                    border: 0,
-                  }}
-                >
-                  <TableRow>
-                    <TableCell>Calabresa</TableCell>
-                    <TableCell>Grande</TableCell>
-                    <TableCell>59,99</TableCell>
-                    <TableCell>2</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>Calabresa</TableCell>
-                    <TableCell>Familia</TableCell>
-                    <TableCell>69,99</TableCell>
-                    <TableCell>1</TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </TableCell>
-            <TableCell scope="row">189,97</TableCell>
-            <TableCell scope="row">Mesa 01</TableCell>
-            <TableCell scope="row">Entregue</TableCell>
-          </TableRow>
+          {cozinha.map((c) => (
+            <TableRow
+              sx={{
+                border: 0,
+              }}
+              key={c.id}
+            >
+              <TableCell scope="row">{c.id}</TableCell>
+              <TableCell scope="row">
+                {/* Subtabela */}
+                <Table>
+                  <TableBody
+                    sx={{
+                      border: 0,
+                    }}
+                  >
+                    {c.pedidos.map((p) => (
+                      <TableRow key={p.id}>
+                        <TableCell>{p.quantidade}x</TableCell>
+                        <TableCell>{p.nome}</TableCell>
+                        <TableCell>{p.tamanho}</TableCell>
+                        <TableCell align="right">{p.valor}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableCell>
+              <TableCell scope="row" align="right">
+                R${c.valor}
+              </TableCell>
+              <TableCell
+                scope="row"
+                sx={{
+                  whiteSpace: "normal",
+                  wordBreak: "break-word",
+                  width: "250px",
+                }}
+              >
+                {c.mesa ? `Mesa ${c.mesa}` : ""}
+                {c.endereco ? c.endereco : ""}
+              </TableCell>
+              <TableCell scope="row">
+                {c.entregue ? "Entregue" : "Em Andamento"}
+              </TableCell>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     </TableContainer>

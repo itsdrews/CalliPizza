@@ -15,14 +15,15 @@ export const PizzaProvider = ({ children }) => {
     "Especial",
     "Doce",
     "Gourmet",
-    "Vegetariana"
+    "Vegetariana",
+    "Acompanhamentos",
   ];
 
   useEffect(() => {
     const fetchPizzas = async () => {
       try {
         const response = await axios.get(API_URL);
-        setPizzas(response.data); // Axios retorna os dados em `response.data`
+        setPizzas(response.data);
       } catch (err) {
         setError(err.message);
         toast.error("Falha ao carregar as pizzas. Tente novamente mais tarde.");
@@ -37,7 +38,6 @@ export const PizzaProvider = ({ children }) => {
   // CREATE
   const inserirPizza = async (novaPizza) => {
     try {
-      // Reordena o objeto para garantir a ordem no JSON
       const pizzaFormatada = {
         nome: novaPizza.nome,
         tipo: novaPizza.tipo,

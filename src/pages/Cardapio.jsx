@@ -25,9 +25,9 @@ const Cardapio = () => {
   return (
     <>
       <Header></Header>
-      <Filter selecionada={selecionada} setSelecionada={setSelecionada} />
       <div className="cardapio-container">
         <div className="pizzas-grid">
+      <Filter selecionada={selecionada} setSelecionada={setSelecionada} />
           {selecionada ? (
             <>
               <h2>{`Categoria : ${selecionada}`}</h2>

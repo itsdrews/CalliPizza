@@ -107,7 +107,165 @@
         "Grande": 60.5,
         "Família": 70.5
       }
+    },
+    {
+      "id": "7a0c",
+      "nome": "Coca-Cola",
+      "tipo": "Acompanhamentos",
+      "ingredientes": "Pequeno(250ml), Médio(500ml), Grande(1L) ou Família(2L)",
+      "valores": {
+        "Pequena": 5.5,
+        "Média": 7.99,
+        "Grande": 11.99,
+        "Família": 14.99
+      }
+    },
+    {
+      "id": "1346",
+      "nome": "Baré",
+      "tipo": "Acompanhamentos",
+      "ingredientes": "Pequeno(250ml), Médio(500ml), Grande(1L) ou Família(2L)",
+      "valores": {
+        "Família": 14.99,
+        "Grande": 11.99,
+        "Média": 7.99,
+        "Pequena": 5.5
+      }
     }
   ],
-  "comandas": []
+  "comanda": [],
+  "cozinha": [
+    {
+      "id": "8",
+      "mesa": "10",
+      "endereco": "",
+      "pronto": false,
+      "entregue": false,
+      "pedidos": [
+        {
+          "id": "1",
+          "nome": "Margherita",
+          "tamanho": "Pequena",
+          "valor": 35.5,
+          "quantidade": 1
+        },
+        {
+          "id": "1",
+          "nome": "Margherita",
+          "tamanho": "Grande",
+          "valor": 55.5,
+          "quantidade": 1
+        }
+      ],
+      "valor": 91,
+      "funcionario": "{\"nome\":\"funcionario\",\"codigo\":\"123\"}"
+    },
+    {
+      "id": 9,
+      "mesa": "11",
+      "endereco": "",
+      "pronto": false,
+      "entregue": false,
+      "pedidos": [
+        {
+          "id": "1",
+          "nome": "Margherita",
+          "tamanho": "Média",
+          "valor": 45.5,
+          "quantidade": 1
+        },
+        {
+          "id": "2",
+          "nome": "Calabresa",
+          "tamanho": "Média",
+          "valor": 48.9,
+          "quantidade": 1
+        }
+      ],
+      "valor": 94.4,
+      "funcionario": "{\"nome\":\"funcionario\",\"codigo\":\"123\"}"
+    },
+    {
+      "id": 10,
+      "mesa": "",
+      "endereco": "Av. Darcy Vargas, 1.200 - Parque Dez de Novembro, Manaus - AM, 69050-020",
+      "pronto": false,
+      "entregue": false,
+      "pedidos": [
+        {
+          "id": "8",
+          "nome": "Pizza de Chocolate",
+          "tamanho": "Família",
+          "valor": 62,
+          "quantidade": 3
+        }
+      ],
+      "valor": 186,
+      "funcionario": "{\"nome\":\"funcionario\",\"codigo\":\"123\"}"
+    },
+    {
+      "id": 11,
+      "mesa": "",
+      "endereco": "Beco da Indústria",
+      "pronto": true,
+      "entregue": true,
+      "pedidos": [
+        {
+          "id": "1",
+          "nome": "Margherita",
+          "tamanho": "Pequena",
+          "valor": 35.5,
+          "quantidade": 1
+        }
+      ],
+      "valor": 35.5,
+      "funcionario": "{\"nome\":\"funcionario\",\"codigo\":\"123\"}"
+    },
+    {
+      "id": 12,
+      "mesa": "3",
+      "endereco": "",
+      "pronto": true,
+      "entregue": false,
+      "pedidos": [
+        {
+          "id": "7a0c",
+          "nome": "Refrigerante",
+          "tamanho": "Grande",
+          "valor": 11.99,
+          "quantidade": 1
+        },
+        {
+          "id": "10",
+          "nome": "Pizza de Bacon",
+          "tamanho": "Pequena",
+          "valor": 40.5,
+          "quantidade": 1
+        },
+        {
+          "id": "6",
+          "nome": "Pepperoni",
+          "tamanho": "Média",
+          "valor": 56.5,
+          "quantidade": 1
+        },
+        {
+          "id": "5",
+          "nome": "Portuguesa",
+          "tamanho": "Grande",
+          "valor": 62,
+          "quantidade": 1
+        },
+        {
+          "id": "4",
+          "nome": "Quatro Queijos",
+          "tamanho": "Grande",
+          "valor": 64.9,
+          "quantidade": 1
+        }
+      ],
+      "valor": 235.89000000000001,
+      "funcionario": "{\"nome\":\"funcionario\",\"codigo\":\"123\"}"
+    }
+  ]
 }

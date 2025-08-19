@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import KeyboardDoubleArrowDownOutlinedIcon from "@mui/icons-material/KeyboardDoubleArrowDownOutlined";
+import KeyboardDoubleArrowUpOutlinedIcon from "@mui/icons-material/KeyboardDoubleArrowUpOutlined";
 import { usePizzas } from "../context/PizzaContext";
 
 const Filter = ({ selecionada, setSelecionada }) => {
@@ -14,16 +16,10 @@ const Filter = ({ selecionada, setSelecionada }) => {
   };
 
   return (
-    <>
+    <div className={`filter-container ${expanded ? "expanded" : "closed"}`}>
       {expanded ? (
-        <div
-          style={{
-            padding: "20px",
-            backgroundColor: "#f5f5f5",
-            borderRadius: "8px",
-          }}
-        >
-          <h3 style={{ marginBottom: "15px" }}>Filtrar por Tipo</h3>
+        <>
+          <h3>Filtrar por Tipo</h3>
           <div style={{ display: "flex", gap: "15px", flexWrap: "wrap" }}>
             {categorias.map((categoria) => (
               <div
@@ -37,15 +33,13 @@ const Filter = ({ selecionada, setSelecionada }) => {
                 onClick={() => handleSelect(categoria)}
               >
                 <div
+                  className="filter-selection"
                   style={{
-                    width: "20px",
-                    height: "20px",
-                    borderRadius: "50%",
                     border: `2px solid ${
-                      categoria === selecionada ? "#d32f2f" : "#ccc"
+                      categoria === selecionada ? "#8c1c13" : "#333"
                     }`,
                     backgroundColor:
-                      categoria === selecionada ? "#d32f2f" : "transparent",
+                      categoria === selecionada ? "#8c1c13" : "transparent",
                     transition: "background-color 0.2s, border-color 0.2s",
                   }}
                 ></div>
@@ -62,26 +56,28 @@ const Filter = ({ selecionada, setSelecionada }) => {
             ))}
           </div>
           <button
+            className="toggle-filter"
             onClick={() => {
               setExpand((prev) => !prev);
             }}
           >
-            ^
+            <KeyboardDoubleArrowUpOutlinedIcon sx={{ fontSize: "inherit" }} />
           </button>
-        </div>
+        </>
       ) : (
-        <div>
-          <h2>Filtrar</h2>
+        <>
+          <h3>Filtrar</h3>
           <button
             onClick={() => {
               setExpand((prev) => !prev);
             }}
+            className="toggle-filter"
           >
-            V
+            <KeyboardDoubleArrowDownOutlinedIcon sx={{ fontSize: "inherit" }} />
           </button>
-        </div>
+        </>
       )}
-    </>
+    </div>
   );
 };
 

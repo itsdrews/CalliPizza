@@ -3,10 +3,10 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import PizzaCard from '../components/PizzaCard'
 import {useState,useCallback,useEffect,useMemo} from 'react'
-import { useNavigate } from 'react-router-dom'
 import { usePedidos } from '../context/PedidosContext'
 import { toast } from 'react-toastify'
 import { useComanda } from '../context/ComandaContext'
+
 const Comanda = () => {
   const PEDIDOS_LOCAL_STORAGE_KEY = 'pedidos';
   const gerarUUID = () => crypto.randomUUID();
