@@ -13,8 +13,6 @@ const Historico = () => {
     <>
       <Header />
       <div className="delivery-pizza">
-        <h2>Saíram para entrega</h2>
-        <DeliveryTable tipo="saida" data={saida} />
         <h2>Prontos</h2>
         <DeliveryTable tipo="prontos" data={prontos} />
         <h2>Em Preparo</h2>
