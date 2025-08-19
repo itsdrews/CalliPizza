@@ -9,8 +9,6 @@ const Cozinha = () => {
   const {cozinha,atualizarStatusComanda} = useCozinha();
 
   const handleSelecionarComanda = (comanda) => {
-    console.log("selecionado: ")
-    console.log(comanda)
     setComandaSelecionado(comanda);
   }
   return (
@@ -22,16 +20,29 @@ const Cozinha = () => {
             {(cozinha.map(p => (
               <div key={p.id} className="pedido-container">
                 <button className={comandaSelecionado?.id===p.id?"selecionado":""} onClick={() => handleSelecionarComanda(p)}
-                  > 00{p.id}</button>
+                  > {p.id<10?`00${p.id}`:`0${p.id}`}</button>
               </div>
-            // TO DO: Setar button selecionado e mudar a cor, passando os detalhes pra div de baixo.
             )))}
         </div>
-            <h2>Itens do Pedido {comandaSelecionado?.id|| "--" } - Mesa {comandaSelecionado?.mesa || "--" }</h2>
-            <div className="pedido-details">
-              <p>Itens da comanda</p>
+            <h2>Itens do Pedido {comandaSelecionado? ((comandaSelecionado.id<10)?`00${comandaSelecionado.id}`:`0${comandaSelecionado.id}`): "--" } - Mesa {comandaSelecionado?.mesa || "--" }</h2>
+
+            {comandaSelecionado?.pedidos.map((item) =>{
+
+              return(
+              <div key={item.id} className="pedido-details">
+              <button  className="pedido-details-checkbox"></button>
+              <div className="details-name-ing">
+              <h3 className="pedido-name-size">{`Pizza de ${item.nome} - ${ item.tamanho}`}</h3>
+              <p>{item.ingredientes}</p>
+              </div>
             </div>
-            <button type="submit">Enviar para Entrega</button>
+
+              )
+            }
+
+            ) || <h3>Ainda não há detalhes!</h3>
+          }
+            <button type="submit" className="entrega-button">ENVIAR PARA A ENTREGA</button>
       
         
       </div>

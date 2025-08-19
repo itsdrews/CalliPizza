@@ -40,7 +40,7 @@ const limparPedidos = () =>{
 }
 
 
-const confirmarMandarParaCozinha = (pedidos,mesa,endereco,valor) => {
+const confirmarMandarParaCozinha = (pedidos,mesa,endereco,valor,ingredientes) => {
   pedidos.length >0?
   (mesa !=='' || endereco !== '')?
   (toast.warn(
@@ -49,7 +49,7 @@ const confirmarMandarParaCozinha = (pedidos,mesa,endereco,valor) => {
       <div style={{ marginTop: '10px', display: 'flex', gap: '10px' }}>
         <button 
           onClick={() => {
-            mandarParaCozinha(pedidos,mesa,endereco,valor);
+            mandarParaCozinha(pedidos,mesa,endereco,valor,ingredientes);
             toast.dismiss();
             toast.success('Comanda encaminhada com sucesso!');
           }}
@@ -87,7 +87,7 @@ const confirmarMandarParaCozinha = (pedidos,mesa,endereco,valor) => {
     }
   )):toast.error("Preencha Endereço ou Mesa!"): toast.error("Não há itens na comanda!");
 };
-const mandarParaCozinha = (pedidos,mesa,endereco,valor) => {
+const mandarParaCozinha = (pedidos,mesa,endereco,valor,ingredientes) => {
   const novoId = gerarIdIncremental(); 
   const func  = JSON.parse(localStorage.getItem('usuario')) 
   const novaComanda = 
@@ -98,6 +98,7 @@ const mandarParaCozinha = (pedidos,mesa,endereco,valor) => {
     pronto:false,
     entregue:false,
     pedidos:pedidos,
+    ingredientes:ingredientes,
     valor:valor,
     funcionario: func.nome ||" "
   }   

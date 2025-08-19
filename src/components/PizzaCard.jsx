@@ -36,7 +36,7 @@ const PizzaCard = ({ pizza, cardMode,onIncrease,onDecrease,deletePizza,adicionar
 
                         <button className="cart-image-container">
                             <img
-                              onClick={() =>adicionarPedido(pizza.id,pizza.nome,tamanho,valor)}
+                              onClick={() =>adicionarPedido(pizza.id,pizza.nome,tamanho,valor,ingredientesString)}
                               src="/carrinho.svg"
                               alt="cart"
                               className="cart-image"

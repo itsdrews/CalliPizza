@@ -48,3 +48,48 @@ body {
 .pedido-container button:hover{
   cursor: pointer;
 }
+.pedido-details{
+  margin: 0 auto;
+  width: 100%;
+  font-weight: normal;
+  color: var(--color-darker);
+  display: flex;
+  align-items: center;
+}
+.entrega-button{
+  background-color: var(--color-primary);
+  border: .5rem solid var(--color-secondary);
+  border-radius: 1.2rem;
+  font-family: 'poppins',sans-serif;
+  margin-top: 2.6rem;
+  color: var(--color-background);
+  width: 38rem;
+  height: 6.7rem;
+  font-size: 2.4rem;
+  font-weight: bold;
+}
+.entrega-button:hover{
+  cursor: pointer;
+}
+button.selecionado{
+  background-color: var(--color-secondary);
+}
+.pedido-details-checkbox{
+  width: 6.4rem;
+  height: 6.4rem;
+  border: .5rem solid var(--color-primary);
+  border-radius: 1.2rem;
+  background-color: var(--color-background);
+}
+.pedido-name-size{
+  margin: 0 auto;
+  font-size: 3.2rem;
+}
+.details-name-ing{
+  
+  margin-left:3.1rem
+}
+.details-name-ing p{
+  font-size: 2.2rem;
+  margin-top: .04rem;
+}

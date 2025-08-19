@@ -14,13 +14,14 @@ export const PedidosProvider = ({ children }) => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(pedidos));
   }, [pedidos]);
 
-  const adicionarPedido = (novoPedidoId,novoPedidoNome,novoPedidoTamanho,novoPedidoValor) => {
+  const adicionarPedido = (novoPedidoId,novoPedidoNome,novoPedidoTamanho,novoPedidoValor,novoPedidoIngredientes) => {
     const novoPedido = {
       id:novoPedidoId,
       nome:novoPedidoNome,
       tamanho:novoPedidoTamanho,
       valor: novoPedidoValor,
-      quantidade: 1
+      ingredientes: novoPedidoIngredientes,
+      quantidade: 1,
     }
     console.log(novoPedido)
     const pedidoDuplicado = pedidos.some(p => 
