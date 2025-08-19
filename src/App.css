@@ -107,6 +107,9 @@ footer {
   font-family: "Open-sans", sans-serif;
   font-weight: 400;
 }
+.pizza-info{
+  margin: 0 2.5rem;
+}
 .pizza-image {
   position: relative;
   background-color: black;
@@ -176,6 +179,9 @@ footer {
 .cart-image-container:hover {
   cursor: pointer;
 }
+.cart-image-container:active{
+  background-color: var(--color-primary);
+}
 .price-separator {
   height: 100%; /* Altura da linha */
   width: 0.4rem;
@@ -234,6 +240,10 @@ footer {
 }
 .quantity-button:hover {
   cursor: pointer;
+}
+.quantity-button:active,
+.delete-button:active{
+  background-color: var(--color-primary);
 }
 .delete-button {
   background-color: var(--color-background);
@@ -422,6 +432,9 @@ footer {
 }
 .total-submit button:hover{
   cursor: pointer;
+}
+.total-submit button:active{
+  background-color: var(--color-background);
 }
 
 .mesa-comanda{
