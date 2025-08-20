@@ -42,7 +42,12 @@ export const PizzaProvider = ({ children }) => {
         nome: novaPizza.nome,
         tipo: novaPizza.tipo,
         ingredientes: novaPizza.ingredientes,
-        valores: novaPizza.valores,
+        valores: {
+          Pequena: novaPizza.valores.Pequena,
+          Média: novaPizza.valores.Média,
+          Grande: novaPizza.valores.Grande,
+          Família: novaPizza.valores.Família,
+        },
       };
 
       const response = await axios.post(API_URL, pizzaFormatada);
@@ -59,11 +64,15 @@ export const PizzaProvider = ({ children }) => {
     try {
       // Reordena o objeto para garantir a ordem no JSON
       const pizzaFormatada = {
-        id: pizzaEditada.id,
         nome: pizzaEditada.nome,
         tipo: pizzaEditada.tipo,
         ingredientes: pizzaEditada.ingredientes,
-        valores: pizzaEditada.valores,
+        valores: {
+          Pequena: pizzaEditada.valores.Pequena,
+          Média: pizzaEditada.valores.Média,
+          Grande: pizzaEditada.valores.Grande,
+          Família: pizzaEditada.valores.Família,
+        },
       };
 
       const response = await axios.put(

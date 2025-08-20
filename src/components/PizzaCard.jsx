@@ -38,23 +38,26 @@ const PizzaCard = ({
                       {index > 0 && <div className="price-separator"></div>}
                       <div className="size-price">
                         <span className="size">{tamanho}:</span>
-                        <span className="price">R$ {valor.toFixed(2)}</span>
+                        <span className="price">R$ {valor}</span>
 
-                        <button className="cart-image-container">
-                          <img
-                            onClick={() =>
-                              adicionarPedido(
-                                pizza.id,
-                                pizza.nome,
-                                tamanho,
-                                valor,
-                                ingredientesString
-                              )
-                            }
-                            src="/carrinho.svg"
-                            alt="cart"
-                            className="cart-image"
-                          />
+                        <button
+                          onClick={() =>
+                            adicionarPedido(
+                              pizza.id,
+                              pizza.nome,
+                              tamanho,
+                              valor
+                            )
+                          }
+                          className="cart-image-container"
+                        >
+                          <span>
+                            <img
+                              src="/carrinho.svg"
+                              alt="cart"
+                              className="cart-image"
+                            />
+                          </span>
                         </button>
                       </div>
                     </div>
@@ -84,9 +87,7 @@ const PizzaCard = ({
             </div>
             <div className="pizza-footer-comanda">
               <div className="price-item-comanda">
-                <span className="price-comanda">
-                  R$ {pizza.valor.toFixed(2)}
-                </span>
+                <span className="price-comanda">R$ {pizza.valor}</span>
 
                 <button className="quantity-button" onClick={handleIncrease}>
                   +

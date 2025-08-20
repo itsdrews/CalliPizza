@@ -10,7 +10,6 @@ import { usePizzas } from "../context/PizzaContext";
 const Cardapio = () => {
   const { pizzas, setPizzas } = usePizzas();
   const { pedidos, adicionarPedido } = usePedidos();
-  const { comanda, setComanda } = useComanda();
 
   const [selecionada, setSelecionada] = useState(null);
   const [pizzasSelecionadas, setPizzasSelecionadas] = useState([]);

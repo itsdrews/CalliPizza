@@ -110,7 +110,7 @@
     },
     {
       "id": "1346",
-      "nome": "Baré",
+      "nome": "Baré",
       "tipo": "Acompanhamentos",
       "ingredientes": "Pequeno(250ml), Médio(500ml), Grande(1L) ou Família(2L)",
       "valores": {
@@ -118,6 +118,18 @@
         "Grande": 11.99,
         "Média": 7.99,
         "Pequena": 5.5
+      }
+    },
+    {
+      "id": "c492",
+      "nome": "Strogonoff de Carne",
+      "tipo": "Gourmet",
+      "ingredientes": "Strogonoff de Carne, queijo mussarela e borda recheada de catupiry.",
+      "valores": {
+        "Pequena": 79.99,
+        "Média": 89.99,
+        "Grande": 95.5,
+        "Família": 99.99
       }
     }
   ],
@@ -127,7 +139,7 @@
       "id": "8",
       "mesa": "10",
       "endereco": "",
-      "pronto": false,
+      "pronto": true,
       "saida": false,
       "entregue": false,
       "pedidos": [
@@ -179,9 +191,9 @@
       "id": "10",
       "mesa": "",
       "endereco": "Av. Darcy Vargas, 1.200 - Parque Dez de Novembro, Manaus - AM, 69050-020",
-      "pronto": false,
-      "saida": false,
-      "entregue": false,
+      "pronto": true,
+      "saida": true,
+      "entregue": true,
       "pedidos": [
         {
           "id": "8",
@@ -306,7 +318,7 @@
         },
         {
           "id": "1346",
-          "nome": "Baré",
+          "nome": "Baré",
           "tamanho": "Média",
           "valor": 7.99,
           "ingredientes": "Pequeno(250ml), Médio(500ml), Grande(1L) ou Família(2L)",
@@ -317,7 +329,7 @@
       "funcionario": "funcionario"
     },
     {
-      "id": 16,
+      "id": "16",
       "mesa": "",
       "endereco": "uea - est",
       "pronto": false,
@@ -342,6 +354,138 @@
         }
       ],
       "valor": 177.5,
+      "funcionario": "funcionario"
+    },
+    {
+      "id": "17",
+      "mesa": "",
+      "endereco": "teste",
+      "pronto": true,
+      "saida": true,
+      "entregue": false,
+      "pedidos": [
+        {
+          "id": "1",
+          "nome": "Margherita",
+          "tamanho": "Pequena",
+          "valor": 35.5,
+          "quantidade": 1
+        },
+        {
+          "id": "2",
+          "nome": "Calabresa",
+          "tamanho": "Família",
+          "valor": 69.99,
+          "quantidade": 1
+        },
+        {
+          "id": "3",
+          "nome": "Frango com Catupiry",
+          "tamanho": "Média",
+          "valor": 51.5,
+          "quantidade": 1
+        },
+        {
+          "id": "4",
+          "nome": "Quatro Queijos",
+          "tamanho": "Média",
+          "valor": 54.9,
+          "quantidade": 1
+        },
+        {
+          "id": "5",
+          "nome": "Portuguesa",
+          "tamanho": "Média",
+          "valor": 52,
+          "quantidade": 1
+        },
+        {
+          "id": "7",
+          "nome": "Vegetariana",
+          "tamanho": "Grande",
+          "valor": 60,
+          "quantidade": 2
+        },
+        {
+          "id": "8",
+          "nome": "Pizza de Chocolate",
+          "tamanho": "Família",
+          "valor": 62,
+          "quantidade": 1
+        }
+      ],
+      "valor": 445.89,
+      "funcionario": "funcionario"
+    },
+    {
+      "id": "18",
+      "mesa": "1",
+      "endereco": "",
+      "pronto": true,
+      "saida": true,
+      "entregue": true,
+      "pedidos": [
+        {
+          "id": "7",
+          "nome": "Vegetariana",
+          "tamanho": "Família",
+          "valor": 70,
+          "quantidade": 1
+        }
+      ],
+      "valor": 70,
+      "funcionario": "funcionario"
+    },
+    {
+      "id": "19",
+      "mesa": "1",
+      "endereco": "",
+      "pronto": true,
+      "saida": false,
+      "entregue": false,
+      "pedidos": [
+        {
+          "id": "c492",
+          "nome": "Strogonoff de Carne",
+          "tamanho": "Grande",
+          "valor": 95.5,
+          "quantidade": 1
+        },
+        {
+          "id": "c492",
+          "nome": "Strogonoff de Carne",
+          "tamanho": "Família",
+          "valor": 99.99,
+          "quantidade": 2
+        },
+        {
+          "id": "7",
+          "nome": "Vegetariana",
+          "tamanho": "Grande",
+          "valor": 60,
+          "quantidade": 1
+        }
+      ],
+      "valor": 355.48,
+      "funcionario": "funcionario"
+    },
+    {
+      "id": "20",
+      "mesa": "",
+      "endereco": "ads",
+      "pronto": true,
+      "saida": false,
+      "entregue": false,
+      "pedidos": [
+        {
+          "id": "1",
+          "nome": "Margherita",
+          "tamanho": "Família",
+          "valor": 65.5,
+          "quantidade": 3
+        }
+      ],
+      "valor": 196.5,
       "funcionario": "funcionario"
     }
   ]

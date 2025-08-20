@@ -104,7 +104,7 @@ export const ComandaProvider = ({ children }) => {
     const novoId = gerarIdIncremental();
     const func = JSON.parse(localStorage.getItem("usuario"));
     const novaComanda = {
-      id: novoId,
+      id: `${novoId}`,
       mesa: mesa,
       endereco: endereco,
       pronto: false,

@@ -4,26 +4,30 @@ import Footer from "../components/Footer";
 import "./Cozinha.css";
 import { useCozinha } from "../context/CozinhaContext";
 import { toast } from "react-toastify";
+
 const Cozinha = () => {
   const [comandaSelecionado, setComandaSelecionado] = useState(null);
   const { cozinha, atualizarStatusComanda } = useCozinha();
-  const [activeTamanhos, setActiveTamanhos] = useState([]);
+  const [activeItems, setActiveItems] = useState([]);
+
+  const toDoCozinha = cozinha.filter((c) => !c.pronto);
 
   const handleSelecionarComanda = (comanda) => {
     setComandaSelecionado(comanda);
-    setActiveTamanhos([]);
+    setActiveItems([]);
   };
-  const toggleActive = (tamanho) => () => {
-    setActiveTamanhos((prev) =>
-      prev.includes(tamanho)
-        ? prev.filter((itemTamanho) => itemTamanho !== tamanho)
-        : [...prev, tamanho]
+  const toggleActive = (id, tamanho) => () => {
+    const key = `${id}-${tamanho}`;
+    setActiveItems((prev) =>
+      prev.includes(key)
+        ? prev.filter((itemKey) => itemKey !== key)
+        : [...prev, key]
     );
   };
-  const handleEnviarParaEntrega = (activeTamanhos, pedidos, id) => {
+  const handleEnviarParaEntrega = (activeItems, pedidos, id) => {
     console.log(pedidos);
     atualizarStatusComanda(id);
-    return pedidos.length === activeTamanhos.length
+    return pedidos.length === activeItems.length
       ? toast.success("Enviado para entrega!")
       : toast.error("Um ou mais itens não está pronto!");
   };
@@ -33,8 +37,8 @@ const Cozinha = () => {
       <div className="cozinha-container">
         <h2>Pedidos</h2>
         <div className="pedidos-grid">
-          {cozinha.map((p) => (
-            <div className="pedido-container">
+          {toDoCozinha.map((p) => (
+            <div className="pedido-container" key={p.id}>
               <button
                 className={comandaSelecionado?.id === p.id ? "selecionado" : ""}
                 onClick={() => handleSelecionarComanda(p)}
@@ -61,14 +65,14 @@ const Cozinha = () => {
         </h2>
 
         {comandaSelecionado?.pedidos.map((item) => {
-          const isActive = activeTamanhos.includes(item.tamanho);
+          const isActive = activeItems.includes(`${item.id}-${item.tamanho}`);
           return (
-            <div key={item.id} className="pedido-details">
+            <div key={`${item.id}-${item.tamanho}`} className="pedido-details">
               <button
                 className={`pedido-details-checkbox${
                   isActive ? "-active" : ""
                 }`}
-                onClick={toggleActive(item.tamanho)}
+                onClick={toggleActive(item.id, item.tamanho)}
               ></button>
               <div className="details-name-ing">
                 <h3 className="pedido-name-size">{`${item.nome} - ${item.tamanho}`}</h3>
@@ -82,7 +86,7 @@ const Cozinha = () => {
           className="entrega-button"
           onClick={() =>
             handleEnviarParaEntrega(
-              activeTamanhos,
+              activeItems,
               comandaSelecionado.pedidos,
               comandaSelecionado.id
             )
