@@ -59,7 +59,6 @@ export const CozinhaProvider = ({ children }) => {
         updatedStatus
       );
 
-      // Update the state with the server's response
       setCozinha((prev) =>
         prev.map((comanda) =>
           comanda.id === comandaId ? { ...comanda, ...response.data } : comanda
@@ -68,6 +67,31 @@ export const CozinhaProvider = ({ children }) => {
       toast.success("Status da comanda atualizado!");
     } catch (err) {
       handleError(err, "Erro ao atualizar a comanda da cozinha.");
+    }
+  };
+
+  const atualizarStatusSaida = async (comandaId) => {
+    try {
+      const comandaToUpdate = cozinha.find((c) => c.id === comandaId);
+      if (!comandaToUpdate) {
+        throw new Error("Comanda not found");
+      }
+
+      const updatedStatus = { saida: !comandaToUpdate.saida };
+
+      const response = await axios.patch(
+        `${API_URL}/${comandaId}`,
+        updatedStatus
+      );
+
+      setCozinha((prev) =>
+        prev.map((comanda) =>
+          comanda.id === comandaId ? { ...comanda, ...response.data } : comanda
+        )
+      );
+      toast.success("Status da saída atualizado!");
+    } catch (err) {
+      handleError(err, "Erro ao atualizar a saída do pedido.");
     }
   };
 
@@ -85,7 +109,6 @@ export const CozinhaProvider = ({ children }) => {
         updatedStatus
       );
 
-      // Update the state with the server's response
       setCozinha((prev) =>
         prev.map((comanda) =>
           comanda.id === comandaId ? { ...comanda, ...response.data } : comanda
@@ -105,6 +128,7 @@ export const CozinhaProvider = ({ children }) => {
         error,
         adicionarComanda,
         atualizarStatusComanda,
+        atualizarStatusSaida,
         atualizarStatusEntrega,
       }}
     >

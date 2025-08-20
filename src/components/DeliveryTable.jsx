@@ -3,42 +3,57 @@ import { toast } from "react-toastify";
 import { useCozinha } from "../context/CozinhaContext";
 
 const DeliveryTable = ({ tipo, data }) => {
-  const { atualizarStatusEntrega } = useCozinha();
+  const { atualizarStatusEntrega, atualizarStatusSaida } = useCozinha();
 
   const confirmarAcao = (id_pedido, acao) => {
-    switch (acao) {
-      case "sair-entrega":
-        break;
-
-      case "fazer-entrega":
-        break;
-
-      default:
-        console.log("Ação não definida");
-        return;
-    }
-
     toast.warn(
       <div>
-        <p>O pedido {id_pedido} foi realmente entregue?</p>
+        {acao === "fazer-entrega" && (
+          <p>O pedido {id_pedido} foi realmente entregue?</p>
+        )}
+        {acao === "sair-entrega" && (
+          <p>O pedido {id_pedido} está saíndo para entrega?</p>
+        )}
         <div style={{ marginTop: "10px", display: "flex", gap: "10px" }}>
-          <button
-            onClick={() => {
-              atualizarStatusEntrega(id_pedido);
-              toast.dismiss();
-              toast.success("Pedido saiu para a entrega");
-            }}
-            style={{
-              padding: "5px 10px",
-              background: "#ff4444",
-              color: "white",
-              border: "none",
-              borderRadius: "4px",
-              cursor: "pointer",
-            }}
-          >
-            Confirmar
-          </button>
+          {acao === "fazer-entrega" && (
+            <button
+              onClick={() => {
+                atualizarStatusEntrega(id_pedido);
+                toast.dismiss();
+                toast.success("Pedido saiu para a entrega");
+              }}
+              style={{
+                padding: "5px 10px",
+                background: "#ff4444",
+                color: "white",
+                border: "none",
+                borderRadius: "4px",
+                cursor: "pointer",
+              }}
+            >
+              Confirmar
+            </button>
+          )}
+          {acao === "sair-entrega" && (
+            <button
+              onClick={() => {
+                atualizarStatusSaida(id_pedido);
+                toast.dismiss();
+                toast.success("Pedido saiu para a entrega");
+              }}
+              style={{
+                padding: "5px 10px",
+                background: "#ff4444",
+                color: "white",
+                border: "none",
+                borderRadius: "4px",
+                cursor: "pointer",
+              }}
+            >
+              Confirmar
+            </button>
+          )}
+
           <button
             onClick={() => toast.dismiss()}
             style={{

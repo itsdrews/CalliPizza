@@ -17,13 +17,15 @@ export const PedidosProvider = ({ children }) => {
     novoPedidoId,
     novoPedidoNome,
     novoPedidoTamanho,
-    novoPedidoValor
+    novoPedidoValor,
+    novoPedidoIngredientes
   ) => {
     const novoPedido = {
       id: novoPedidoId,
       nome: novoPedidoNome,
       tamanho: novoPedidoTamanho,
       valor: novoPedidoValor,
+      ingredientes: novoPedidoIngredientes,
       quantidade: 1,
     };
     console.log(novoPedido);

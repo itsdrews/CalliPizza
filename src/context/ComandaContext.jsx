@@ -39,7 +39,13 @@ export const ComandaProvider = ({ children }) => {
     localStorage.setItem(PEDIDOS_STORAGE_KEY, JSON.stringify([]));
   };
 
-  const confirmarMandarParaCozinha = (pedidos, mesa, endereco, valor) => {
+  const confirmarMandarParaCozinha = (
+    pedidos,
+    mesa,
+    endereco,
+    valor,
+    ingredientes
+  ) => {
     pedidos.length > 0
       ? mesa !== "" || endereco !== ""
         ? toast.warn(
@@ -48,7 +54,13 @@ export const ComandaProvider = ({ children }) => {
               <div style={{ marginTop: "10px", display: "flex", gap: "10px" }}>
                 <button
                   onClick={() => {
-                    mandarParaCozinha(pedidos, mesa, endereco, valor);
+                    mandarParaCozinha(
+                      pedidos,
+                      mesa,
+                      endereco,
+                      valor,
+                      ingredientes
+                    );
                     toast.dismiss();
                     toast.success("Comanda encaminhada com sucesso!");
                   }}
@@ -88,17 +100,20 @@ export const ComandaProvider = ({ children }) => {
         : toast.error("Preencha Endereço ou Mesa!")
       : toast.error("Não há itens na comanda!");
   };
-  const mandarParaCozinha = (pedidos, mesa, endereco, valor) => {
+  const mandarParaCozinha = (pedidos, mesa, endereco, valor, ingredientes) => {
     const novoId = gerarIdIncremental();
+    const func = JSON.parse(localStorage.getItem("usuario"));
     const novaComanda = {
       id: novoId,
       mesa: mesa,
       endereco: endereco,
       pronto: false,
+      saida: false,
       entregue: false,
       pedidos: pedidos,
+      ingredientes: ingredientes,
       valor: valor,
-      funcionario: localStorage.getItem("usuario") || " ",
+      funcionario: func.nome || " ",
     };
 
     setComanda(novaComanda);

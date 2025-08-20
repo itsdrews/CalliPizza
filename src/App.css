@@ -18,7 +18,7 @@ body {
 }
 
 /* Header */
-.header {
+header {
   padding: 0;
   display: flex;
   flex-direction: column;
@@ -95,6 +95,8 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
+  bottom: 0;
+  position: static;
 }
 
 /* FILTRO */
@@ -144,6 +146,11 @@ footer {
   font-family: "Open-sans", sans-serif;
   font-weight: 400;
 }
+
+.pizza-info {
+  margin: 0 2.5rem;
+}
+
 .pizza-image {
   position: relative;
   background-color: black;
@@ -186,10 +193,13 @@ footer {
 .cart-image-container {
   background-color: var(--color-secondary);
   border-radius: 1.2rem;
+  width: 7.3rem;
   max-width: 5.3rem;
   margin: 0 auto;
   padding: 1.05rem 2.5rem;
+  border: none;
 }
+
 .pizza-footer {
   color: var(--color-background);
   font-size: 2.4rem;
@@ -208,12 +218,16 @@ footer {
   align-items: center;
 }
 .cart-image {
-  max-width: 3.1rem;
-  margin: 0 auto;
+  width: 3.1rem;
 }
 .cart-image-container:hover {
   cursor: pointer;
 }
+
+.cart-image-container:active {
+  background-color: var(--color-primary);
+}
+
 .price-separator {
   height: 100%; /* Altura da linha */
   width: 0.4rem;
@@ -273,6 +287,12 @@ footer {
 .quantity-button:hover {
   cursor: pointer;
 }
+
+.quantity-button:active,
+.delete-button:active {
+  background-color: var(--color-primary);
+}
+
 .delete-button {
   background-color: var(--color-background);
   border: none;
@@ -292,16 +312,6 @@ footer {
   font-weight: bold;
   max-width: 38.8rem;
   margin: 0 auto;
-}
-.total-submit button {
-  background-color: var(--color-darker);
-  border-radius: 1.2rem;
-  width: 48rem;
-  height: 6.7rem;
-  margin: 0 auto;
-  color: var(--color-background);
-  font-size: 2.4rem;
-  font-weight: bold;
 }
 
 /* Tela de Login */
@@ -456,6 +466,26 @@ footer {
   gap: 4.8rem;
   margin: 0 auto;
   align-items: center;
+}
+
+.total-submit button {
+  background-color: var(--color-darker);
+  border-radius: 1.2rem;
+  width: 48rem;
+  height: 6.7rem;
+  margin: 0 auto;
+  color: var(--color-background);
+  font-size: 2.4rem;
+  font-weight: bold;
+  transition: 0.5s;
+}
+
+.total-submit button:hover {
+  cursor: pointer;
+}
+
+.total-submit button:active {
+  background-color: var(--color-background);
 }
 
 .mesa-comanda {

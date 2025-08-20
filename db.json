@@ -61,18 +61,6 @@
       }
     },
     {
-      "id": "6",
-      "nome": "Pepperoni",
-      "tipo": "Especial",
-      "ingredientes": "Molho de tomate, Mussarela, Queijo provolone e Pepperoni em rodelas",
-      "valores": {
-        "Pequena": 46.5,
-        "Média": 56.5,
-        "Grande": 66.5,
-        "Família": 76.5
-      }
-    },
-    {
       "id": "7",
       "nome": "Vegetariana",
       "tipo": "Vegetariana",
@@ -140,6 +128,7 @@
       "mesa": "10",
       "endereco": "",
       "pronto": false,
+      "saida": false,
       "entregue": false,
       "pedidos": [
         {
@@ -164,7 +153,8 @@
       "id": "9",
       "mesa": "11",
       "endereco": "",
-      "pronto": false,
+      "pronto": true,
+      "saida": false,
       "entregue": false,
       "pedidos": [
         {
@@ -189,7 +179,8 @@
       "id": "10",
       "mesa": "",
       "endereco": "Av. Darcy Vargas, 1.200 - Parque Dez de Novembro, Manaus - AM, 69050-020",
-      "pronto": true,
+      "pronto": false,
+      "saida": false,
       "entregue": false,
       "pedidos": [
         {
@@ -208,6 +199,7 @@
       "mesa": "",
       "endereco": "Beco da Indústria",
       "pronto": true,
+      "saida": true,
       "entregue": true,
       "pedidos": [
         {
@@ -226,6 +218,7 @@
       "mesa": "3",
       "endereco": "",
       "pronto": true,
+      "saida": true,
       "entregue": true,
       "pedidos": [
         {
@@ -264,8 +257,92 @@
           "quantidade": 1
         }
       ],
-      "valor": 235.89000000000001,
+      "valor": 235.89,
       "funcionario": "{\"nome\":\"funcionario\",\"codigo\":\"123\"}"
+    },
+    {
+      "id": "14",
+      "mesa": "",
+      "endereco": "Manaus, AM",
+      "pronto": true,
+      "saida": true,
+      "entregue": true,
+      "pedidos": [
+        {
+          "id": "3",
+          "nome": "Frango com Catupiry",
+          "tamanho": "Família",
+          "valor": 71.5,
+          "ingredientes": "Molho de tomate, Mussarela, Frango desfiado e Catupiry original",
+          "quantidade": 1
+        },
+        {
+          "id": "7a0c",
+          "nome": "Coca-Cola",
+          "tamanho": "Média",
+          "valor": 7.99,
+          "ingredientes": "Pequeno(250ml), Médio(500ml), Grande(1L) ou Família(2L)",
+          "quantidade": 1
+        }
+      ],
+      "valor": 79.49,
+      "funcionario": "funcionario"
+    },
+    {
+      "id": "15",
+      "mesa": "15",
+      "endereco": "",
+      "pronto": false,
+      "saida": true,
+      "entregue": true,
+      "pedidos": [
+        {
+          "id": "8",
+          "nome": "Pizza de Chocolate",
+          "tamanho": "Pequena",
+          "valor": 32,
+          "ingredientes": "Chocolate, Granulado e Morangos frescos",
+          "quantidade": 2
+        },
+        {
+          "id": "1346",
+          "nome": "Baré",
+          "tamanho": "Média",
+          "valor": 7.99,
+          "ingredientes": "Pequeno(250ml), Médio(500ml), Grande(1L) ou Família(2L)",
+          "quantidade": 1
+        }
+      ],
+      "valor": 71.99,
+      "funcionario": "funcionario"
+    },
+    {
+      "id": 16,
+      "mesa": "",
+      "endereco": "uea - est",
+      "pronto": false,
+      "saida": false,
+      "entregue": false,
+      "pedidos": [
+        {
+          "id": "10",
+          "nome": "Pizza de Bacon",
+          "tamanho": "Média",
+          "valor": 50.5,
+          "ingredientes": "Molho de tomate, Mussarela, Bacon crocante e Queijo cheddar",
+          "quantidade": 2
+        },
+        {
+          "id": "6",
+          "nome": "Pepperoni",
+          "tamanho": "Família",
+          "valor": 76.5,
+          "ingredientes": "Molho de tomate, Mussarela, Queijo provolone e Pepperoni em rodelas",
+          "quantidade": 1
+        }
+      ],
+      "valor": 177.5,
+      "funcionario": "funcionario"
     }
   ]
 }
