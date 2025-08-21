@@ -2,7 +2,7 @@ import Cardapio from "../pages/Cardapio";
 import Comanda from "../pages/Comanda";
 import Cozinha from "../pages/Cozinha";
 
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const NavBar = () => {
   return (

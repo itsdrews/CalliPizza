@@ -24,7 +24,7 @@ const Login = () => {
     } else {
       if (codigo === "321" && senha === "321") {
         login({ nome: "administrador", codigo }, "fake-jwt-token");
-        navigate("/admin");
+        navigate("/pizza-adm");
       } else {
         setErro("Código ou senha inválidos");
       }

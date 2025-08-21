@@ -110,6 +110,7 @@ export const ComandaProvider = ({ children }) => {
       pronto: false,
       saida: false,
       entregue: false,
+      aceitaTaxa: false,
       pedidos: pedidos,
       ingredientes: ingredientes,
       valor: valor,

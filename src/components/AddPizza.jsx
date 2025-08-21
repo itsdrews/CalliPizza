@@ -12,7 +12,7 @@ import "react-tooltip/dist/react-tooltip.css";
 // Esquema de validação com Yup
 const schema = Yup.object().shape({
   nome: Yup.string().required("Sabor é obrigatório"),
-  tipo: Yup.string().required("Tipo é obrigatório"), // Expressão regular removida para flexibilidade
+  tipo: Yup.string().required("Tipo é obrigatório"), 
   ingredientes: Yup.string().required("Ingredientes são obrigatórios"),
   valores: Yup.object().shape({
     Pequena: Yup.number()
@@ -65,7 +65,7 @@ const AddPizza = ({ idpizza }) => {
         await inserirPizza(dados);
       }
 
-      setTimeout(() => navigate("/admin"), 1500);
+      setTimeout(() => navigate("/pizza-adm"), 1500);
     } catch (error) {
       console.error("Erro ao processar o formulário:", error);
     }
@@ -85,7 +85,7 @@ const AddPizza = ({ idpizza }) => {
         },
       });
     } else if (idpizza) {
-      navigate("/admin");
+      navigate("/pizza-adm");
     }
   }, [idpizza, pizzas, reset, navigate]);
 
@@ -96,7 +96,7 @@ const AddPizza = ({ idpizza }) => {
   }, [isSubmitSuccessful, reset, pizza]);
 
   const handleCancelar = () => {
-    navigate("/admin");
+    navigate("/pizza-adm");
   };
 
   return (

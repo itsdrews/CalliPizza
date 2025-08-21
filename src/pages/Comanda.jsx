@@ -132,7 +132,7 @@ const Comanda = () => {
           </div>
         </div>
         <div className="total-submit">
-          <p className="total">Total: R$ {total}</p>
+          <p className="total">Total: R$ {total.toFixed(2)}</p>
           <button
             type="submit"
             onClick={() =>

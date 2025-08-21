@@ -70,14 +70,17 @@ export const CozinhaProvider = ({ children }) => {
     }
   };
 
-  const atualizarStatusSaida = async (comandaId) => {
+  const atualizarStatusSaida = async (comandaId, idFuncionario) => {
     try {
       const comandaToUpdate = cozinha.find((c) => c.id === comandaId);
       if (!comandaToUpdate) {
         throw new Error("Comanda not found");
       }
 
-      const updatedStatus = { saida: !comandaToUpdate.saida };
+      const updatedStatus = {
+        saida: !comandaToUpdate.saida,
+        funcionario: idFuncionario,
+      };
 
       const response = await axios.patch(
         `${API_URL}/${comandaId}`,
@@ -95,14 +98,17 @@ export const CozinhaProvider = ({ children }) => {
     }
   };
 
-  const atualizarStatusEntrega = async (comandaId) => {
+  const atualizarStatusEntrega = async (comandaId, value) => {
     try {
       const comandaToUpdate = cozinha.find((c) => c.id === comandaId);
       if (!comandaToUpdate) {
         throw new Error("Comanda not found");
       }
 
-      const updatedStatus = { entregue: !comandaToUpdate.entregue };
+      const updatedStatus = {
+        entregue: !comandaToUpdate.entregue,
+        aceitaTaxa: value,
+      };
 
       const response = await axios.patch(
         `${API_URL}/${comandaId}`,
